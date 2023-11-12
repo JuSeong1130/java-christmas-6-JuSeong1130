@@ -72,4 +72,32 @@ class OrderTest {
         Assertions.assertThatCode(() -> new Order(orderItems, LocalDateTime.now()))
                 .doesNotThrowAnyException();
     }
+    @Test
+    @DisplayName("")
+    void Order_총_주문금액_테스트() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(otherName, otherPrice);
+
+        int actual = (price * quantity) + (otherPrice * otherQuantity);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDateTime.now());
+
+        //when
+        int expected = order.totalPurchaseAmount();
+
+        //then
+        Assertions.assertThat(actual).isEqualTo(expected);
+
+
+    }
 }
