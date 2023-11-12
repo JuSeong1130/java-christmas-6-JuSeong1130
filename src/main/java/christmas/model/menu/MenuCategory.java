@@ -11,8 +11,6 @@ public enum MenuCategory {
     DESSERT("디저트", DessertMenu.getDessertMenus()),
     DRINK("음료", DrinkMenu.getDrinkMenus())
     ;
-
-
     private String categoryName;
     private List<Menu> menus;
 
@@ -25,5 +23,9 @@ public enum MenuCategory {
         return Arrays.stream(MenuCategory.values())
                 .flatMap(menuCategory -> menuCategory.menus.stream())
                 .collect(Collectors.toList());
+    }
+    public static boolean isDrinkMenu(Menu menu) {
+           return DRINK.menus.stream()
+                    .anyMatch(drinkMenu -> drinkMenu.equals(menu));
     }
 }
