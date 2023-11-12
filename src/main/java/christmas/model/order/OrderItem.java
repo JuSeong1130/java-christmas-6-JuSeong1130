@@ -29,6 +29,10 @@ public class OrderItem {
         return quantity;
     }
 
+    public int getAmount() {
+        return menu.getPrice() * quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

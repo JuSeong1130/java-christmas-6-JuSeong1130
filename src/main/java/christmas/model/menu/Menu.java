@@ -37,5 +37,7 @@ public class Menu {
         return Objects.hash(name, price);
     }
 
-
+    public int getPrice() {
+        return price;
+    }
 }

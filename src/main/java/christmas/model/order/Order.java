@@ -51,6 +51,12 @@ public class Order {
 
     }
 
+    public int totalPurchaseAmount() {
+        return orderItems.stream()
+                .mapToInt(OrderItem::getAmount)
+                .sum();
+    }
+
 
 
 
