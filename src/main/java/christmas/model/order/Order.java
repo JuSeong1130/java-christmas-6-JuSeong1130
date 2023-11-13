@@ -73,4 +73,8 @@ public class Order {
                 .sum();
     }
 
+    public boolean isTimeInRange(LocalDate startTime, LocalDate endTime) {
+        return !orderTime.isBefore(startTime) && !orderTime.isAfter(endTime);
+    }
+
 }
