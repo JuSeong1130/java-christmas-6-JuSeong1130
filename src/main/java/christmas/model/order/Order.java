@@ -58,6 +58,9 @@ public class Order {
     }
 
 
+    public boolean isWeekend() {
+        return Day.isWeekend(String.valueOf(orderTime.getDayOfWeek()));
+    }
 
 
 }
