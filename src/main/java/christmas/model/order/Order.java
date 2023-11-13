@@ -81,4 +81,8 @@ public class Order {
         return Day.isWeekday(String.valueOf(orderTime.getDayOfWeek()));
     }
 
+    public long calculateDaysSinceEventStart(LocalDate startTime) {
+        return ChronoUnit.DAYS.between(startTime, orderTime);
+    }
+
 }
