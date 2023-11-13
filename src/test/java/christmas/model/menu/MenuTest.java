@@ -12,7 +12,7 @@ class MenuTest {
     @DisplayName("입력된 이름과 Menu가 가지고 있는 이름이 같다면 True")
     void 입렫된_이름_같다면_True() {
         // given
-        Menu menu = new Menu("테스트", 0);
+        Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
         String menuName = "테스트";
         // when then
         Assertions.assertThat(menu.isEqualName(menuName)).isTrue();
@@ -22,7 +22,7 @@ class MenuTest {
     @DisplayName("입력된 이름과 Menu가 가지고 있는 이름이 다르다면 False")
     void 입렫된_이름_다르다면_False() {
         // given
-        Menu menu = new Menu("테스트", 0);
+        Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
         String menuName = "테스트1";
         // when then
         Assertions.assertThat(menu.isEqualName(menuName)).isFalse();
