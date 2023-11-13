@@ -199,4 +199,32 @@ class OrderTest {
         Assertions.assertThat(expected).isFalse();
     }
 
+    @Test
+    @DisplayName("Order의 특정 메뉴 타입이 몇개인지 확인하는 기능 테스트")
+    void 특정_메뉴타입_개수_구하기_테스트() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+
+        int actual = 1;
+        //when
+        long expected = order.countMenuType(MenuType.DRINK);
+
+        //then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+
+
 }
