@@ -77,4 +77,8 @@ public class Order {
         return !orderTime.isBefore(startTime) && !orderTime.isAfter(endTime);
     }
 
+    public boolean isWeekday() {
+        return Day.isWeekday(String.valueOf(orderTime.getDayOfWeek()));
+    }
+
 }
