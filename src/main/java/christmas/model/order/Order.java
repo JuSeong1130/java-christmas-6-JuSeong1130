@@ -66,5 +66,11 @@ public class Order {
         return totalPurchaseAmount() >= amount;
     }
 
+    public long countMenuType(MenuType menuType) {
+        return orderItems.stream()
+                .filter(orderItem -> orderItem.isEqualMenuType(menuType))
+                .mapToInt(OrderItem::getQuantity)
+                .sum();
+    }
 
 }
