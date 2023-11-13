@@ -1,13 +1,27 @@
 package christmas.model.menu;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Menus {
 
     private List<Menu> menus;
 
     public Menus() {
-        this.menus = MenuCategory.getAllMenus();
+        this.menus = initMenus();
+    }
+
+    private List<Menu> initMenus() {
+        List<Menu> appetizerMenus = AppetizerMenu.getAppetizerMenus();
+        List<Menu> dessertMenus = DessertMenu.getDessertMenus();
+        List<Menu> drinkMenus = DrinkMenu.getDrinkMenus();
+        List<Menu> mainMenus = MainMenu.getMainMenus();
+        return Stream.of(appetizerMenus,dessertMenus, drinkMenus, mainMenus)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     public Menu findMenuBy(String menuName) {
