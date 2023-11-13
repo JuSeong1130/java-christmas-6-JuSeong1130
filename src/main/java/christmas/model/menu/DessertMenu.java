@@ -19,7 +19,8 @@ public enum DessertMenu {
 
     public static List<Menu> getDessertMenus() {
         return Arrays.stream(DessertMenu.values())
-                .map(dessertMenu -> new Menu(dessertMenu.menuName,dessertMenu.price))
+                .map(dessertMenu -> new Menu(MenuType.DESSERT, dessertMenu.menuName,
+                        dessertMenu.price))
                 .collect(Collectors.toList());
     }
 

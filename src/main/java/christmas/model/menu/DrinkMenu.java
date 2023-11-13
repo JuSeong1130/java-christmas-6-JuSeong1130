@@ -8,8 +8,7 @@ public enum DrinkMenu {
 
     ZERO_COLA("제로콜라", 3000),
     RED_WINE("레드와인", 60000),
-    CHAMPAGNE("샴페인", 25000)
-    ;
+    CHAMPAGNE("샴페인", 25000);
 
     private final String menuName;
     private final int price;
@@ -21,7 +20,7 @@ public enum DrinkMenu {
 
     public static List<Menu> getDrinkMenus() {
         return Arrays.stream(DrinkMenu.values())
-                .map(drinkMenu -> new Menu(drinkMenu.menuName,drinkMenu.price))
+                .map(drinkMenu -> new Menu(MenuType.DRINK, drinkMenu.menuName, drinkMenu.price))
                 .collect(Collectors.toList());
     }
 
