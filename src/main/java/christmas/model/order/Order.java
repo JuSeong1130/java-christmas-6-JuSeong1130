@@ -85,4 +85,14 @@ public class Order {
         return ChronoUnit.DAYS.between(startTime, orderTime);
     }
 
+    public boolean isDateIncludedIn(List<Integer> days) {
+        int dayOfMonth = orderTime.getDayOfMonth();
+        return days.stream()
+                .anyMatch(day -> day == dayOfMonth);
+    }
+
+    public boolean isSpecialDay() {
+        int dayOfMonth = orderTime.getDayOfMonth();
+        return SpecialDay.hasDayOfMonth(dayOfMonth);
+    }
 }
