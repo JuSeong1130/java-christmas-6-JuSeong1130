@@ -109,9 +109,14 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        List<OrderItem> orderItems = List.of(orderItem);
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
 
         //when
@@ -128,9 +133,14 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        List<OrderItem> orderItems = List.of(orderItem);
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
 
         //when
@@ -139,4 +149,54 @@ class OrderTest {
         //then
         Assertions.assertThat(expected).isFalse();
     }
+    @Test
+    @DisplayName("Order의 총 주문 금액이 특정한 금액을 넘는다면 True")
+    void 총_주문금액_일정금액_넘을_시_True() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+
+        //when
+        boolean expected = order.isTotalAmountAboveThan(10000);
+
+        //then
+        Assertions.assertThat(expected).isTrue();
+    }
+
+    @Test
+    @DisplayName("Order의 총 주문 금액이 특정한 금액을 넘지 못하면 False")
+    void 총_주문금액_일정금액_넘지_못할_시_False() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+
+        //when
+        boolean expected = order.isTotalAmountAboveThan(120000);
+
+        //then
+        Assertions.assertThat(expected).isFalse();
+    }
+
 }
