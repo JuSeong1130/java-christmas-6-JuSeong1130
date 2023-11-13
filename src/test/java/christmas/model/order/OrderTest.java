@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -223,6 +224,60 @@ class OrderTest {
 
         //then
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Order가 특정 날짜들 사이에 있다면 True")
+    void 특정날짜_사이_Ture() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 31);
+        //when
+        boolean expected = order.isTimeInRange(startDate, endDate);
+
+        //then
+        Assertions.assertThat(expected).isTrue();
+    }
+
+    @Test
+    @DisplayName("Order가 특정 날짜들 사이가 아니라면 False")
+    void 특정날짜_사이_아닐_시_False() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 20);
+        //when
+        boolean expected = order.isTimeInRange(startDate, endDate);
+
+        //then
+        Assertions.assertThat(expected).isFalse();
     }
 
 
