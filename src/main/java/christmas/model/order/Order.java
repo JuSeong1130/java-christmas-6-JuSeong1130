@@ -62,5 +62,9 @@ public class Order {
         return Day.isWeekend(String.valueOf(orderTime.getDayOfWeek()));
     }
 
+    public boolean isTotalAmountAboveThan(int amount) {
+        return totalPurchaseAmount() >= amount;
+    }
+
 
 }
