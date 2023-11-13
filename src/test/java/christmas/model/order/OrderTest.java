@@ -329,5 +329,34 @@ class OrderTest {
         Assertions.assertThat(expected).isFalse();
     }
 
+    @Test
+    @DisplayName("Order의 주문일자가 특정날짜로부터 몇일지났는지 확인하는 기능 테스트")
+    void 특정일자_부터_지난일수_구하기_기능_테스트() {
+        String name = "제로콜라";
+        int price = 3000;
+        int quantity = 1;
+        Menu menu = new Menu(MenuType.DRINK, name, price);
+
+        String otherName= "티본스테이크";
+        int otherPrice = 55000;
+        int otherQuantity = 2;
+        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
+
+        OrderItem orderItem = new OrderItem(menu, quantity);
+        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
+        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+
+        int actual = 22 - 1;
+
+        //when
+        long expected = order.calculateDaysSinceEventStart(startDate);
+
+        //then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
 
 }
