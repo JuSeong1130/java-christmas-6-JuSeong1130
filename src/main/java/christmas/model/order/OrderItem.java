@@ -1,7 +1,7 @@
 package christmas.model.order;
 
 import christmas.model.menu.Menu;
-import christmas.model.menu.MenuCategory;
+import christmas.model.menu.MenuType;
 import java.util.Objects;
 
 public class OrderItem {
@@ -22,7 +22,7 @@ public class OrderItem {
     }
 
     public boolean isDrinkMenu() {
-        return MenuCategory.isDrinkMenu(menu);
+        return menu.isDrinkMenu();
     }
 
     public int getQuantity() {
@@ -48,5 +48,9 @@ public class OrderItem {
     @Override
     public int hashCode() {
         return Objects.hash(menu);
+    }
+
+    public boolean isEqualMenuType(MenuType menuType) {
+        return menu.isEqualMenuType(menuType);
     }
 }
