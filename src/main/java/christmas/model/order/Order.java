@@ -29,7 +29,7 @@ public class Order {
         return calculateTotalOrderAmount() >= amount;
     }
 
-    public long countMenuType(MenuType menuType) {
+    public int countMenuType(MenuType menuType) {
         return orderItems.countMenuType(menuType);
     }
 
@@ -41,8 +41,8 @@ public class Order {
         return Day.isWeekday(String.valueOf(orderTime.getDayOfWeek()));
     }
 
-    public long calculateDaysSinceEventStart(LocalDate startTime) {
-        return ChronoUnit.DAYS.between(startTime, orderTime);
+    public int calculateDaysSinceEventStart(LocalDate startTime) {
+        return (int) ChronoUnit.DAYS.between(startTime, orderTime);
     }
 
     public boolean isDateIncludedIn(List<Integer> days) {

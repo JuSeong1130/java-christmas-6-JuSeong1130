@@ -53,7 +53,7 @@ public class OrderItems {
                 .sum();
     }
 
-    public long countMenuType(MenuType menuType) {
+    public int countMenuType(MenuType menuType) {
         return orderItems.stream()
                 .filter(orderItem -> orderItem.isEqualMenuType(menuType))
                 .mapToInt(OrderItem::getQuantity)

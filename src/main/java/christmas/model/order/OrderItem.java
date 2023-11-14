@@ -43,8 +43,8 @@ public class OrderItem {
         return menu.isEqualMenuType(menuType);
     }
 
-    public Menu getMenu() {
-        return menu;
+    public String getMenuName() {
+        return menu.getName();
     }
 
     public int getQuantity() {
