@@ -15,11 +15,8 @@ public class Menus {
     }
 
     private List<Menu> initMenus() {
-        List<Menu> appetizerMenus = AppetizerMenu.getAppetizerMenus();
-        List<Menu> dessertMenus = DessertMenu.getDessertMenus();
-        List<Menu> drinkMenus = DrinkMenu.getDrinkMenus();
-        List<Menu> mainMenus = MainMenu.getMainMenus();
-        return Stream.of(appetizerMenus,dessertMenus, drinkMenus, mainMenus)
+        return Stream.of(AppetizerMenu.getAppetizerMenus(), DessertMenu.getDessertMenus(),
+                        DrinkMenu.getDrinkMenus(), MainMenu.getMainMenus())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
@@ -28,6 +25,7 @@ public class Menus {
         return menus.stream()
                 .filter(menu -> menu.isEqualName(menuName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+                .orElseThrow(
+                        () -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
 }
