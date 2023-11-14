@@ -186,7 +186,6 @@ class OrderTest {
     }
 
 
-
     @Test
     @DisplayName("Order의 주문일자가 특정날짜로부터 몇일지났는지 확인하는 기능 테스트")
     void 특정일자_부터_지난일수_구하기_기능_테스트() {
@@ -240,7 +239,8 @@ class OrderTest {
     @DisplayName("Order 총 주문 금액을 확인")
     void Order_총_주문금액_테스트() {
         //given
-        int actual = (mainMenu.getPrice() * mainMenuQuantity) + (drinkMenu.getPrice() * drinkMenuQuantity);
+        int actual = (mainMenu.getPrice() * mainMenuQuantity) + (drinkMenu.getPrice()
+                * drinkMenuQuantity);
         Order order = new Order(orderItems, LocalDate.now());
 
         //when

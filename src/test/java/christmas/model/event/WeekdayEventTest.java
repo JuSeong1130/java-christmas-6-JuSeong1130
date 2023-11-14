@@ -31,7 +31,6 @@ class WeekdayEventTest {
                 LocalDate.of(2023, 12, 21));
         Event event = new WeekdayEvent();
 
-
         String eventName = "평일 할인";
         int discountAmount = dessertCount * discountAmountPerDessert;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);

@@ -35,6 +35,7 @@ class GiftEventTest {
         // then
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
     private OrderItems getOrderItems() {
         OrderItem dessertItem = new OrderItem(
                 new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
