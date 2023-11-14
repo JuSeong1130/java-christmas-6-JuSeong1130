@@ -11,11 +11,11 @@ public class EventPlanner {
         this.events = events;
     }
 
-    public List<DiscountResult> calculateDiscountAmount(Order order) {
+    public DiscountResults calculateDiscountAmount(Order order) {
         List<DiscountResult> discountResults = new ArrayList<>();
         for (Event event : events) {
             discountResults.add(event.calculateDiscountAmount(order));
         }
-        return discountResults;
+        return new DiscountResults(discountResults);
     }
 }

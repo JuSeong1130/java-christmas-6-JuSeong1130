@@ -27,15 +27,13 @@ class EventPlannerTest {
         Order order = getOrder();
         List<Event> events = getEvents();
         EventPlanner eventPlanner = new EventPlanner(events);
-        List<DiscountResult> actual = getDiscountResults();
+        DiscountResults actual = getDiscountResults();
 
         // when
-        List<DiscountResult> expected = eventPlanner.calculateDiscountAmount(order);
+        DiscountResults expected = eventPlanner.calculateDiscountAmount(order);
 
         // then
-        Assertions.assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
-
-
+        Assertions.assertThat(actual.getDiscountResults()).containsExactlyInAnyOrderElementsOf(expected.getDiscountResults());
     }
 
     private static Order getOrder() {
@@ -64,12 +62,12 @@ class EventPlannerTest {
         return events;
     }
 
-    private  List<DiscountResult> getDiscountResults() {
+    private  DiscountResults getDiscountResults() {
         DiscountResult christmas = new DiscountResult("크리스마스 디데이 할인", 1200);
         DiscountResult gift = new DiscountResult("증정 이벤트", 25000);
         DiscountResult special = new DiscountResult("특별 할인", 1000);
         DiscountResult weekday = new DiscountResult("평일 할인", 10115);
         DiscountResult weekend = new DiscountResult("주말 할인", 0);
-        return List.of(christmas, gift, special, weekday, weekend);
+        return new DiscountResults(List.of(christmas, gift, special, weekday, weekend));
     }
 }
