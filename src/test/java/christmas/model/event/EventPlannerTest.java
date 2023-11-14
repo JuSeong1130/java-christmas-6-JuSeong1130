@@ -1,7 +1,5 @@
 package christmas.model.event;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
@@ -16,7 +14,6 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 class EventPlannerTest {
 
@@ -47,19 +44,14 @@ class EventPlannerTest {
         OrderItem drinkMenuItem = new OrderItem(
                 new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
                         DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));
-        Order order = new Order(new OrderItems(List.of(dessertItem, mainMenuItem, drinkMenuItem)),
+        return new Order(new OrderItems(List.of(dessertItem, mainMenuItem, drinkMenuItem)),
                 LocalDate.of(2023, 12, 3));
-        return order;
     }
 
     private static List<Event> getEvents() {
-        Event christmasEvent = new ChristmasEvent();
-        Event specialDayEvent = new SpecialDayEvent();
-        Event weekdayEvent = new WeekdayEvent();
-        Event weekendEvent = new WeekendEvent();
-        Event giftEvent = new GiftEvent();
-        List<Event> events = List.of(christmasEvent, specialDayEvent, weekdayEvent,
-                weekendEvent, giftEvent);
+        List<Event> events = List.of(new ChristmasEvent(), new SpecialDayEvent(),
+                new WeekdayEvent(),
+                new WeekendEvent(), new GiftEvent());
         return events;
     }
 
