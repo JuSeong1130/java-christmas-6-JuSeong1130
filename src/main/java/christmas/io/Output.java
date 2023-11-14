@@ -2,9 +2,9 @@ package christmas.io;
 
 public interface Output {
 
-    void print(String message);
+    void print(Object message);
 
-    void println(String message);
+    void println(Object message);
 
     void printf(String format,Object... args);
 

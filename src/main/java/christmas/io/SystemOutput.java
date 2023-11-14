@@ -2,12 +2,12 @@ package christmas.io;
 
 public class SystemOutput implements Output {
     @Override
-    public void print(String message) {
+    public void print(Object message) {
         System.out.print(message);
     }
 
     @Override
-    public void println(String message) {
+    public void println(Object message) {
         System.out.println(message);
     }
 
