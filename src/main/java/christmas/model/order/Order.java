@@ -1,7 +1,6 @@
 package christmas.model.order;
 
 import christmas.model.event.Day;
-import christmas.model.event.SpecialDay;
 import christmas.model.menu.MenuType;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -93,11 +92,6 @@ public class Order {
         int dayOfMonth = orderTime.getDayOfMonth();
         return days.stream()
                 .anyMatch(day -> day == dayOfMonth);
-    }
-
-    public boolean isSpecialDay() {
-        int dayOfMonth = orderTime.getDayOfMonth();
-        return SpecialDay.hasDayOfMonth(dayOfMonth);
     }
 
     public List<OrderItem> getOrderItems() {
