@@ -28,6 +28,6 @@ public class Menus {
         return menus.stream()
                 .filter(menu -> menu.isEqualName(menuName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바른 메뉴를 입력해주세요"));
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
 }
