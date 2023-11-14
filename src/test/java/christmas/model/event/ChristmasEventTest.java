@@ -20,19 +20,25 @@ import org.junit.jupiter.api.Test;
 
 class ChristmasEventTest {
 
+    private static int BASIC_AMOUNT = 1000;
+    private static int OPERATION_VALUE = 100;
+
     @Test
-    @DisplayName("12월 1일에서 25일 사이라면 기본할인 1000원에 1일부터 지난 일수 * 100원이 할인된다.")
+    @DisplayName("날짜가 12월 1일에서 25일 사이라면 기본할인 1000원에 1일부터 지난 일수 * 100원이 할인된다.")
     void 크리스마스_할인_이벤트() {
         // given
         OrderItem dessertItem = new OrderItem(
                 new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
                         DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
+
+        int day = 12;
+
         Order order = new Order(new OrderItems(List.of(dessertItem)),
-                LocalDate.of(2023, 12, 12));
+                LocalDate.of(2023, 12, day));
         Event event = new ChristmasEvent();
 
         String eventName = "크리스마스 디데이 할인";
-        int discountAmount = (100 * 11) + 1000;
+        int discountAmount = (OPERATION_VALUE * (day - 1)) + BASIC_AMOUNT;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when
