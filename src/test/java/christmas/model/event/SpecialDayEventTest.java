@@ -24,8 +24,9 @@ class SpecialDayEventTest {
         OrderItem dessertItem = new OrderItem(
                 new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
                         DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
+        int specialDay = 3;
         Order order = new Order(new OrderItems(List.of(dessertItem)),
-                LocalDate.of(2023, 12, 3));
+                LocalDate.of(2023, 12, specialDay));
         Event event = new SpecialDayEvent();
 
         String eventName = "특별 할인";
