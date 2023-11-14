@@ -1,12 +1,16 @@
 package christmas.controller;
 
 import christmas.config.AppConfig;
+import christmas.controller.dto.RequestOrderItemDto;
 import christmas.exception.InvalidFormatException;
 import christmas.model.event.DiscountResult;
 import christmas.model.event.EventPlanner;
 import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
 import christmas.model.order.OrderItems;
+import christmas.service.OrderService;
+import christmas.service.OrderSummaryDto;
+import christmas.util.ExceptionRetryHandler;
 import christmas.util.OrderMapper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -15,59 +19,27 @@ import java.util.List;
 
 public class OrderController {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public OrderController(InputView inputView, OutputView outputView) {
+    private final OrderService orderService;
+
+    public OrderController(InputView inputView, OutputView outputView, OrderService orderService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.orderService = orderService;
     }
 
-    public void run() {
-        Order order = processOrder();
-        processEvent(order);
-    }
-
-    private Order processOrder() {
-        printWelcome();
-        LocalDate visitDate = createVisitDate();
-        Order order = createOrder(visitDate);
-        printOrderInfo(order);
-        return order;
-    }
-
-    private void printWelcome() {
+    public void beginExpectedOrderProcessing() {
         outputView.printWelcome();
+        OrderSummaryDto orderSummaryDto = calculateExpectedOrder();
+        outputView.printOrderSummary(orderSummaryDto);
     }
 
-    private LocalDate createVisitDate() {
-        while (true) {
-            try {
-                return inputView.askVisitDate();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private Order createOrder(LocalDate localDate) {
-        while (true) {
-            try {
-                OrderItems orderItems = OrderMapper.toOrderItems(inputView.askOrder());
-                return new Order(orderItems, localDate);
-            } catch (IllegalArgumentException | InvalidFormatException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private void printOrderInfo(Order order) {
-        outputView.printOrderInfo(order);
-    }
-
-    private void processEvent(Order order) {
-        EventPlanner eventPlanner = AppConfig.createEventPlanner();
-        List<DiscountResult> discountResults = eventPlanner.calculateDiscountAmount(order);
-        outputView.printDiscountResult(discountResults, order);
+    private OrderSummaryDto calculateExpectedOrder() {
+        LocalDate selectedDate = ExceptionRetryHandler.retryUntilSuccess(inputView::askVisitDate);
+        List<RequestOrderItemDto> requestOrderItemDtos = ExceptionRetryHandler.retryUntilSuccess(
+                inputView::askOrder);
+        return ExceptionRetryHandler.retryUntilSuccess(orderService::calculateExpectedOrder, selectedDate, requestOrderItemDtos);
     }
 }
