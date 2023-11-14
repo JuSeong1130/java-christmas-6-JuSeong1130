@@ -29,4 +29,12 @@ public class DiscountResult {
     public int hashCode() {
         return Objects.hash(eventName, discountAmount);
     }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public long getDiscountAmount() {
+        return discountAmount;
+    }
 }

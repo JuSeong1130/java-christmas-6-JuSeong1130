@@ -53,4 +53,8 @@ public class OrderItem {
     public boolean isEqualMenuType(MenuType menuType) {
         return menu.isEqualMenuType(menuType);
     }
+
+    public Menu getMenu() {
+        return menu;
+    }
 }

@@ -1,21 +1,25 @@
 package christmas.model.order;
 
-import java.time.LocalDateTime;
+import christmas.model.event.Day;
+import christmas.model.event.SpecialDay;
+import christmas.model.menu.MenuType;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class Order {
 
     private List<OrderItem> orderItems;
-    private LocalDateTime orderTime;
+    private LocalDate orderTime;
 
-    public Order(List<OrderItem> orderItems, LocalDateTime orderTime) {
+    public Order(List<OrderItem> orderItems, LocalDate orderTime) {
         validate(orderItems, orderTime);
         this.orderItems = orderItems;
         this.orderTime = orderTime;
     }
 
-    private void validate(List<OrderItem> orderItems, LocalDateTime orderTime) {
+    private void validate(List<OrderItem> orderItems, LocalDate orderTime) {
         validateOrderQuantity(orderItems);
         validateDuplication(orderItems);
         validateOnlyDrinkMenu(orderItems);
@@ -94,5 +98,9 @@ public class Order {
     public boolean isSpecialDay() {
         int dayOfMonth = orderTime.getDayOfMonth();
         return SpecialDay.hasDayOfMonth(dayOfMonth);
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 }

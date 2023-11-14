@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Menu {
 
-
     private MenuType menuType;
     private String name;
     private int price;
@@ -51,5 +50,9 @@ public class Menu {
 
     public boolean isDrinkMenu() {
         return menuType.isDrinkMenu();
+    }
+
+    public String getName() {
+        return name;
     }
 }
