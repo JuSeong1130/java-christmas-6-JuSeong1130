@@ -9,6 +9,7 @@ import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
 import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
+import christmas.model.order.OrderItems;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,7 +32,7 @@ class WeekdayEventTest {
         OrderItem drinkMenuItem = new OrderItem(
                 new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
                         DrinkMenu.RED_WINE.getPrice()), 3);
-        Order order = new Order(List.of(dessertItem, mainMenuItem, drinkMenuItem),
+        Order order = new Order(new OrderItems(List.of(dessertItem, mainMenuItem, drinkMenuItem)),
                 LocalDate.of(2023, 12, 21));
         Event event = new WeekdayEvent();
 

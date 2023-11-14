@@ -5,6 +5,7 @@ import christmas.exception.ConversionException;
 import christmas.model.menu.Menu;
 import christmas.model.menu.Menus;
 import christmas.model.order.OrderItem;
+import christmas.model.order.OrderItems;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +45,13 @@ public class OrderMapper {
         }
     }
 
-    public static List<OrderItem> toOrderItems(List<RequestOrderItemDto> requestOrderItemDtos) {
+    public static OrderItems toOrderItems(List<RequestOrderItemDto> requestOrderItemDtos) {
         List<OrderItem> orderItems = new ArrayList<>();
         Menus menus = new Menus();
         for (RequestOrderItemDto orderItemDto : requestOrderItemDtos) {
             Menu menu = menus.findMenuBy(orderItemDto.getMenuName());
             orderItems.add(new OrderItem(menu, orderItemDto.getCount()));
         }
-        return orderItems;
+        return new OrderItems(orderItems);
     }
 }

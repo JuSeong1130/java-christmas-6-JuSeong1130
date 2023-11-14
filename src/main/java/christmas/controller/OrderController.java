@@ -6,6 +6,7 @@ import christmas.model.event.DiscountResult;
 import christmas.model.event.EventPlanner;
 import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
+import christmas.model.order.OrderItems;
 import christmas.util.OrderMapper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -52,7 +53,7 @@ public class OrderController {
     private Order createOrder(LocalDate localDate) {
         while (true) {
             try {
-                List<OrderItem> orderItems = OrderMapper.toOrderItems(inputView.askOrder());
+                OrderItems orderItems = OrderMapper.toOrderItems(inputView.askOrder());
                 return new Order(orderItems, localDate);
             } catch (IllegalArgumentException | InvalidFormatException e) {
                 outputView.printErrorMessage(e.getMessage());

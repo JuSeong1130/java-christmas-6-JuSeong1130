@@ -17,51 +17,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 class OrderTest {
 
     @Test
-    @DisplayName("중복된 OrderItem이 있다면 Order 생성 시 예외 발생")
-    void 중복된_OrderItem_있다면_예외() {
-        // given
-        Menu menu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
-        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
-
-        OrderItem orderItem = new OrderItem(menu, 1);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
-        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        // when then
-        Assertions.assertThatThrownBy(() -> new Order(orderItems, LocalDate.now()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("메뉴의 총 수량이 20개가 초과된다면 Order 생성 시 예외 발생")
-    void 총_수량이_20개_초과_시_예외() {
-        // given
-        Menu menu = new Menu(MenuType.DRINK, "샴페인", 3000);
-        Menu otherMenu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
-
-        OrderItem orderItem = new OrderItem(menu, 10);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 11);
-        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        // when then
-        Assertions.assertThatThrownBy(() -> new Order(orderItems, LocalDate.now()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("OrderItem이 드링크 메뉴만이라면 Order 생성 시 예외 발생")
-    void 음료_메뉴만_주문_시_예외() {
-        // given
-        Menu menu = new Menu(MenuType.DRINK, "레드와인", 60000);
-        Menu otherMenu = new Menu(MenuType.DRINK, "제로콜라", 3000);
-
-        OrderItem orderItem = new OrderItem(menu, 1);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
-        List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        // when then
-        Assertions.assertThatThrownBy(() -> new Order(orderItems, LocalDate.now()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("총 수량 20이하이며 중복으로 상품을 선택하지 않고 음료만 주문하지 않는다면 Order 생성 성공 ")
     void Order_예외_없이_생성() {
         // given
@@ -72,7 +27,7 @@ class OrderTest {
         OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
-        Assertions.assertThatCode(() -> new Order(orderItems, LocalDate.now()))
+        Assertions.assertThatCode(() -> new Order(new OrderItems(orderItems), LocalDate.now()))
                 .doesNotThrowAnyException();
     }
     @Test
@@ -93,7 +48,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.now());
+        Order order = new Order(new OrderItems(orderItems), LocalDate.now());
 
         //when
         int expected = order.calculateTotalOrderAmount();
@@ -118,7 +73,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
         //when
         boolean expected = order.isWeekend();
@@ -142,7 +97,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         //when
         boolean expected = order.isWeekend();
@@ -166,7 +121,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         //when
         boolean expected = order.isTotalAmountAboveThan(10000);
@@ -191,7 +146,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         //when
         boolean expected = order.isTotalAmountAboveThan(120000);
@@ -216,7 +171,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         int actual = 1;
         //when
@@ -242,7 +197,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
         LocalDate endDate = LocalDate.of(2023, 12, 31);
@@ -269,7 +224,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
         LocalDate endDate = LocalDate.of(2023, 12, 20);
@@ -296,7 +251,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
         //when
         boolean expected = order.isWeekday();
@@ -320,7 +275,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
         //when
         boolean expected = order.isWeekday();
@@ -345,7 +300,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
 
@@ -374,7 +329,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
         List<Integer> days = List.of(3, 10, 22);
 
@@ -401,7 +356,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, quantity);
         OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(orderItems, LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
         List<Integer> days = List.of(3, 10);
 
