@@ -16,9 +16,11 @@ class DessertMenuTest {
         List<Menu> appetizerMenus = DessertMenu.getDessertMenus();
         // when, then
         for (DessertMenu dessertMenu : DessertMenu.values()) {
+
             boolean hasMenu = appetizerMenus.stream()
-                    .anyMatch(menu -> menu.isEqualName(dessertMenu.getMenuName())
-                            && menu.isEqualPrice(dessertMenu.getPrice()));
+                    .anyMatch(menu -> menu.equals(
+                            new Menu(dessertMenu.getMenuType(), dessertMenu.getMenuName(),
+                                    dessertMenu.getPrice())));
             Assertions.assertThat(hasMenu).isTrue();
         }
     }

@@ -15,10 +15,11 @@ class DrinkMenuTest {
         // given
         List<Menu> drinkMenus = DrinkMenu.getDrinkMenus();
         // when, then
-        for (DrinkMenu dessertMenu : DrinkMenu.values()) {
+        for (DrinkMenu drinkMenu : DrinkMenu.values()) {
             boolean hasMenu = drinkMenus.stream()
-                    .anyMatch(menu -> menu.isEqualName(dessertMenu.getMenuName())
-                            && menu.isEqualPrice(dessertMenu.getPrice()));
+                    .anyMatch(menu -> menu.equals(
+                            new Menu(drinkMenu.getMenuType(), drinkMenu.getMenuName(),
+                                    drinkMenu.getPrice())));
             Assertions.assertThat(hasMenu).isTrue();
         }
     }

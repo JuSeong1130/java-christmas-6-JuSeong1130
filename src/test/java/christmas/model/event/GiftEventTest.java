@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
 import christmas.model.menu.Menu;
@@ -20,13 +21,7 @@ class GiftEventTest {
     @DisplayName("12월 1일에서 31일 사이, 120000 이상이면 샴페인을 증정 받는다")
     void 증정_이벤트() {
         // given
-        OrderItem mainMenuItem = new OrderItem(
-                new Menu(MenuType.MAIN_COURSE, MainMenu.BARBECUE_RIBS.getMenuName(),
-                        MainMenu.BARBECUE_RIBS.getPrice()), new OrderQuantity(5));
-        OrderItem drinkItem = new OrderItem(
-                new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
-                        DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));
-        Order order = new Order(new OrderItems(List.of(mainMenuItem, drinkItem)),
+        Order order = new Order(getOrderItems(),
                 LocalDate.of(2023, 12, 22));
         Event event = new GiftEvent();
 
@@ -40,4 +35,17 @@ class GiftEventTest {
         // then
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+    private OrderItems getOrderItems() {
+        OrderItem dessertItem = new OrderItem(
+                new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
+                        DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
+        OrderItem mainMenuItem = new OrderItem(
+                new Menu(MenuType.MAIN_COURSE, MainMenu.CHRISTMAS_PASTA.getMenuName(),
+                        MainMenu.CHRISTMAS_PASTA.getPrice()), new OrderQuantity(1));
+        OrderItem drinkMenuItem = new OrderItem(
+                new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
+                        DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));
+        return new OrderItems(List.of(dessertItem, mainMenuItem, drinkMenuItem));
+    }
+
 }

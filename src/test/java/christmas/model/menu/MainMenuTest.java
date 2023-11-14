@@ -17,8 +17,9 @@ class MainMenuTest {
         // when, then
         for (MainMenu mainMenu : MainMenu.values()) {
             boolean hasMenu = mainMenus.stream()
-                    .anyMatch(menu -> menu.isEqualName(mainMenu.getMenuName())
-                            && menu.isEqualPrice(mainMenu.getPrice()));
+                    .anyMatch(menu -> menu.equals(
+                            new Menu(mainMenu.getMenuType(), mainMenu.getMenuName(),
+                                    mainMenu.getPrice())));
             Assertions.assertThat(hasMenu).isTrue();
         }
     }
