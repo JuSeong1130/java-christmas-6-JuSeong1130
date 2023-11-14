@@ -35,7 +35,7 @@ class WeekendEventTest {
         Event event = new WeekendEvent();
 
         String eventName = "주말 할인";
-        long discountAmount = 6 * 2023;
+        int discountAmount = 6 * 2023;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when

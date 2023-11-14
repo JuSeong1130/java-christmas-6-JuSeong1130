@@ -34,7 +34,7 @@ class GiftEventTest {
         Event event = new GiftEvent();
 
         String eventName = "증정 이벤트";
-        long discountAmount = Gift.CHAMPAGNE.getPrice();
+        int discountAmount = Gift.CHAMPAGNE.getPrice();
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when

@@ -38,7 +38,7 @@ class WeekdayEventTest {
         Event event = new WeekdayEvent();
 
         String eventName = "평일 할인";
-        long discountAmount = 5 * 2023;
+        int discountAmount = 5 * 2023;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when

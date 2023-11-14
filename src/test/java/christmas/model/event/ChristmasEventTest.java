@@ -32,7 +32,7 @@ class ChristmasEventTest {
         Event event = new ChristmasEvent();
 
         String eventName = "크리스마스 디데이 할인";
-        long discountAmount = (100 * 11) + 1000;
+        int discountAmount = (100 * 11) + 1000;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when

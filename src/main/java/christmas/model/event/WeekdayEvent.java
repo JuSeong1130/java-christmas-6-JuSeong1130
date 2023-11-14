@@ -10,7 +10,7 @@ public class WeekdayEvent implements Event{
     @Override
     public DiscountResult calculateDiscountAmount(Order order) {
 
-        long discountAmount = 0;
+        int discountAmount = 0;
         LocalDate startTime = LocalDate.of(2023, 12, 1);
         LocalDate endTime = LocalDate.of(2023, 12, 31);
 

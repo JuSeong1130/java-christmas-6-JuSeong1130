@@ -5,9 +5,9 @@ import java.util.Objects;
 public class DiscountResult {
 
     private String eventName;
-    private long discountAmount;
+    private int discountAmount;
 
-    public DiscountResult(String eventName, long discountAmount) {
+    public DiscountResult(String eventName, int discountAmount) {
         this.eventName = eventName;
         this.discountAmount = discountAmount;
     }
@@ -34,7 +34,7 @@ public class DiscountResult {
         return eventName;
     }
 
-    public long getDiscountAmount() {
+    public int getDiscountAmount() {
         return discountAmount;
     }
 }

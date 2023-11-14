@@ -29,7 +29,7 @@ class SpecialDayEventTest {
         Event event = new SpecialDayEvent();
 
         String eventName = "특별 할인";
-        long discountAmount = 1000;
+        int discountAmount = 1000;
         DiscountResult actual = new DiscountResult(eventName, discountAmount);
 
         // when
