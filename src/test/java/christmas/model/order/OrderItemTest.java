@@ -17,7 +17,7 @@ class OrderItemTest {
         Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
 
         // when then
-        Assertions.assertThatThrownBy(() -> new OrderItem(menu, quantity))
+        Assertions.assertThatThrownBy(() -> new OrderItem(menu, new OrderQuantity(quantity)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class OrderItemTest {
         Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
 
         // when then
-        Assertions.assertThatCode(() -> new OrderItem(menu, quantity))
+        Assertions.assertThatCode(() -> new OrderItem(menu, new OrderQuantity(quantity)))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +40,7 @@ class OrderItemTest {
         String drinkName = "제로콜라";
         int price = 3000;
         Menu menu = new Menu(MenuType.DRINK, drinkName, price);
-        OrderItem orderItem = new OrderItem(menu, price);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
         // when
         boolean isDrinkMenu = orderItem.isDrinkMenu();
 
@@ -55,7 +55,7 @@ class OrderItemTest {
         String drinkName = "드링크아님";
         int price = 3000;
         Menu menu = new Menu(MenuType.MAIN_COURSE, drinkName, price);
-        OrderItem orderItem = new OrderItem(menu, price);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
         boolean isDrinkMenu = orderItem.isDrinkMenu();
@@ -72,7 +72,7 @@ class OrderItemTest {
         int price = DrinkMenu.CHAMPAGNE.getPrice();
         MenuType menuType = MenuType.DRINK;
         Menu menu = new Menu(menuType, drinkName, price);
-        OrderItem orderItem = new OrderItem(menu, price);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
         boolean isEqualMenuType = orderItem.isEqualMenuType(menuType);
@@ -89,7 +89,7 @@ class OrderItemTest {
         int price = DrinkMenu.CHAMPAGNE.getPrice();
         MenuType menuType = MenuType.DRINK;
         Menu menu = new Menu(menuType, drinkName, price);
-        OrderItem orderItem = new OrderItem(menu, price);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
         boolean isEqualMenuType = orderItem.isEqualMenuType(MenuType.MAIN_COURSE);

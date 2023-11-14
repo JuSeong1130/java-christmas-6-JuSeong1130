@@ -7,30 +7,19 @@ import java.util.Objects;
 public class OrderItem {
 
     private Menu menu;
-    private int quantity;
+    private OrderQuantity orderQuantity;
 
-    public OrderItem(Menu menu, int quantity) {
-        validate(menu, quantity);
+    public OrderItem(Menu menu, OrderQuantity orderQuantity) {
         this.menu = menu;
-        this.quantity = quantity;
-    }
-
-    private void validate(Menu menu, int quantity) {
-        if(quantity < 1) {
-            throw new IllegalArgumentException("[ERROR] 주문 제품은 수량은 1이상이어야 합니다");
-        }
+        this.orderQuantity = orderQuantity;
     }
 
     public boolean isDrinkMenu() {
         return menu.isDrinkMenu();
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
     public int calculateSubtotal() {
-        return menu.getPrice() * quantity;
+        return menu.getPrice() * getQuantity();
     }
 
     @Override
@@ -56,5 +45,9 @@ public class OrderItem {
 
     public Menu getMenu() {
         return menu;
+    }
+
+    public int getQuantity() {
+        return orderQuantity.getQuantity();
     }
 }

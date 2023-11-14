@@ -23,8 +23,8 @@ class OrderTest {
         Menu menu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 60000);
         Menu otherMenu = new Menu(MenuType.DRINK, "제로콜라", 3000);
 
-        OrderItem orderItem = new OrderItem(menu, 1);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(1));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(1));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
         Assertions.assertThatCode(() -> new Order(new OrderItems(orderItems), LocalDate.now()))
@@ -45,8 +45,8 @@ class OrderTest {
 
         int actual = (price * quantity) + (otherPrice * otherQuantity);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.now());
 
@@ -70,8 +70,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
@@ -94,8 +94,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -118,8 +118,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -143,8 +143,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -168,8 +168,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -194,8 +194,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -221,8 +221,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -248,8 +248,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
 
@@ -272,8 +272,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
@@ -297,8 +297,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
@@ -326,8 +326,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 
@@ -353,8 +353,8 @@ class OrderTest {
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
 
-        OrderItem orderItem = new OrderItem(menu, quantity);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, otherQuantity);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
 

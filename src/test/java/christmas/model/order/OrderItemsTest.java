@@ -18,8 +18,8 @@ class OrderItemsTest {
         Menu menu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
 
-        OrderItem orderItem = new OrderItem(menu, 1);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(1));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(1));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
         Assertions.assertThatThrownBy(() -> new OrderItems(orderItems))
@@ -33,8 +33,8 @@ class OrderItemsTest {
         Menu menu = new Menu(MenuType.DRINK, "샴페인", 3000);
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, "티본스테이크", 3000);
 
-        OrderItem orderItem = new OrderItem(menu, 10);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 11);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(10));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(11));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
         Assertions.assertThatThrownBy(() -> new OrderItems(orderItems))
@@ -48,8 +48,8 @@ class OrderItemsTest {
         Menu menu = new Menu(MenuType.DRINK, "레드와인", 60000);
         Menu otherMenu = new Menu(MenuType.DRINK, "제로콜라", 3000);
 
-        OrderItem orderItem = new OrderItem(menu, 1);
-        OrderItem otherOrderItem = new OrderItem(otherMenu, 1);
+        OrderItem orderItem = new OrderItem(menu, new OrderQuantity(1));
+        OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(1));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
         Assertions.assertThatThrownBy(() ->new OrderItems(orderItems))

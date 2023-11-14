@@ -10,6 +10,7 @@ import christmas.model.menu.MenuType;
 import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
 import christmas.model.order.OrderItems;
+import christmas.model.order.OrderQuantity;
 import java.time.LocalDate;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -40,13 +41,13 @@ class EventPlannerTest {
     private static Order getOrder() {
         OrderItem dessertItem = new OrderItem(
                 new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
-                        DessertMenu.CHOCOLATE_CAKE.getPrice()), 5);
+                        DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
         OrderItem mainMenuItem = new OrderItem(
                 new Menu(MenuType.MAIN_COURSE, MainMenu.CHRISTMAS_PASTA.getMenuName(),
-                        MainMenu.CHRISTMAS_PASTA.getPrice()), 1);
+                        MainMenu.CHRISTMAS_PASTA.getPrice()), new OrderQuantity(1));
         OrderItem drinkMenuItem = new OrderItem(
                 new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
-                        DrinkMenu.RED_WINE.getPrice()), 3);
+                        DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));
         Order order = new Order(new OrderItems(List.of(dessertItem, mainMenuItem, drinkMenuItem)),
                 LocalDate.of(2023, 12, 3));
         return order;

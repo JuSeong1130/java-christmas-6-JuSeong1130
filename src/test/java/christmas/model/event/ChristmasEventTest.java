@@ -10,6 +10,7 @@ import christmas.model.menu.MenuType;
 import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
 import christmas.model.order.OrderItems;
+import christmas.model.order.OrderQuantity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,13 +19,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ChristmasEventTest {
+
     @Test
     @DisplayName("12월 1일에서 25일 사이라면 기본할인 1000원에 1일부터 지난 일수 * 100원이 할인된다.")
     void 크리스마스_할인_이벤트() {
         // given
         OrderItem dessertItem = new OrderItem(
                 new Menu(MenuType.DESSERT, DessertMenu.CHOCOLATE_CAKE.getMenuName(),
-                        DessertMenu.CHOCOLATE_CAKE.getPrice()), 5);
+                        DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
         Order order = new Order(new OrderItems(List.of(dessertItem)),
                 LocalDate.of(2023, 12, 12));
         Event event = new ChristmasEvent();
