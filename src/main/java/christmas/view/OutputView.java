@@ -1,17 +1,16 @@
 package christmas.view;
 
 import christmas.io.Output;
-import christmas.model.event.Badge;
-import christmas.model.event.DiscountResult;
-import christmas.model.event.Gift;
-import christmas.model.order.Order;
-import christmas.model.order.OrderItem;
-import java.text.DecimalFormat;
+import christmas.service.DiscountResultDto;
+import christmas.service.OrderListDto;
+import christmas.service.OrderSummaryDto;
 import java.util.List;
 
 public class OutputView {
 
     private Output output;
+
+    private static final String ENTER = System.lineSeparator();
 
     public OutputView(Output output) {
         this.output = output;
@@ -27,101 +26,78 @@ public class OutputView {
     }
 
     public void printEndMessage() {
-        output.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        output.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + ENTER);
+    }
+
+    public void printOrderSummary(OrderSummaryDto orderSummaryDto) {
+        printOrderInfo(orderSummaryDto);
+        printNewLine();
+        printBenefitsResult(orderSummaryDto);
+    }
+
+    public void printOrderInfo(OrderSummaryDto orderSummaryDto) {
+        printEndMessage();
+        printOrderList(orderSummaryDto.getOrderListDtos());
+        printTotalAmountBeforeDiscount(orderSummaryDto.getTotalPurchaseAmount());
+    }
+
+    public void printOrderList(List<OrderListDto> orderListDtos) {
+        output.println("<주문 메뉴>");
+        for (OrderListDto orderListDto : orderListDtos) {
+            output.printf("%s %d개\n", orderListDto.getMenuName(), orderListDto.getQuantity());
+        }
         output.println("");
     }
 
-    public void printOrderInfo(Order order) {
-        printEndMessage();
-        printOrderList(order);
-        printTotalAmountBeforeDiscount(order);
-    }
-
-    public void printTotalAmountBeforeDiscount(Order order) {
+    public void printTotalAmountBeforeDiscount(int toTalOrderAmount) {
         output.println("<할인 전 총주문 금액>");
-        output.printf("%,d원\n", order.calculateTotalOrderAmount());
+        output.printf("%,d원\n", toTalOrderAmount);
+    }
+    public void printBenefitsResult(OrderSummaryDto orderSummaryDto) {
+        printGift(orderSummaryDto.getGift());
+        printBenefits(orderSummaryDto.getDicountResultDtos());
+        printTotalDiscountAmount(orderSummaryDto.getTotalDiscountAmount());
+        printPaymentAmountAfterDiscount(orderSummaryDto.getExpectedPurchaseAmountAfterDiscount());
+        printBadge(orderSummaryDto.getBadge());
+    }
+    private void printGift(String name) {
+        output.println("<증정 메뉴>");
+        output.println(name + ENTER);
     }
 
+    private void printBenefits(List<DiscountResultDto> discountResultDtos) {
+        output.println("<혜택 내역>");
+        if(discountResultDtos.size() == 0) {
+            output.println("없음" + ENTER);
+            return;
+        }
+        for (DiscountResultDto discountResultDto : discountResultDtos) {
+            output.printf("%s: -%,d원\n",discountResultDto.getEventName(), discountResultDto.getDiscountAmount());
+        }
+        output.println("");
+    }
+
+    private void printTotalDiscountAmount(int discountAmount) {
+        output.println("<총혜택 금액>");
+        String format = "-%,d원\n";
+        if(discountAmount == 0) {
+            format = "%,d원\n";
+        }
+        output.printf(format + ENTER, discountAmount);
+    }
+
+    private void printPaymentAmountAfterDiscount(int expecteAmount) {
+        output.println("<할인 후 예상 결제 금액>");
+        output.printf("%,d원\n" + ENTER, expecteAmount);
+    }
+
+    private void printBadge(String badge) {
+        output.println("<12월 이벤트 배지>");
+        output.println(badge);
+    }
 
     public void printErrorMessage(String message) {
         output.println(message);
     }
 
-    public void printOrderList(Order order) {
-        output.println("<주문 메뉴>");
-        List<OrderItem> orderItems = order.getOrderItems();
-        for (OrderItem orderItem : orderItems) {
-            output.printf("%s %d개\n", orderItem.getMenu().getName(), orderItem.getQuantity());
-        }
-        output.println("");
-    }
-
-    public void printDiscountResult(List<DiscountResult> discountResults, Order order) {
-        printNewLine();
-        printGift(order);
-        printNewLine();
-        printBenefits(discountResults);
-        printNewLine();
-        printTotalDiscountAmount(discountResults);
-        printNewLine();
-        printPaymentAmountAfterDiscount(discountResults, order);
-        printNewLine();
-        printBadge(discountResults);
-    }
-
-    private void printBadge(List<DiscountResult> discountResults) {
-        output.println("<12월 이벤트 배지>");
-        int discountAmount = 0;
-        for (DiscountResult discountResult : discountResults) {
-            discountAmount += (int) discountResult.getDiscountAmount();
-        }
-        output.println(Badge.findBadgeBy(discountAmount));
-    }
-
-    private void printPaymentAmountAfterDiscount(List<DiscountResult> discountResults, Order order) {
-        output.println("<할인 후 예상 결제 금액>");
-        int totalPurchaseAmount = order.calculateTotalOrderAmount();
-        int discountAmount = 0;
-        for (DiscountResult discountResult : discountResults) {
-            discountAmount += (int) discountResult.getDiscountAmount();
-        }
-        output.printf("%,d원\n", totalPurchaseAmount - discountAmount);
-    }
-
-    private void printTotalDiscountAmount(List<DiscountResult> discountResults) {
-        output.println("<총혜택 금액>");
-        int result = 0;
-        for (DiscountResult discountResult : discountResults) {
-            result += (int) discountResult.getDiscountAmount();
-        }
-        String format = "-%,d원\n";
-        if(result == 0) {
-            format = "%,d원\n";
-        }
-        output.printf(format, result);
-    }
-
-    private void printBenefits(List<DiscountResult> discountResults) {
-        output.println("<혜택 내역>");
-        int result = 0;
-        for (DiscountResult discountResult : discountResults) {
-            result += (int) discountResult.getDiscountAmount();
-        }
-        if(result == 0) {
-            output.println("없음");
-            return;
-        }
-
-        for (DiscountResult discountResult : discountResults) {
-            if (discountResult.getDiscountAmount() != 0) {
-                output.printf("%s: -%,d원\n",discountResult.getEventName(), discountResult.getDiscountAmount());
-            }
-        }
-    }
-
-    private void printGift(Order order) {
-        output.println("<증정 메뉴>");
-        String name = Gift.findGiftNameBy(order.calculateTotalOrderAmount());
-        output.println(name);
-    }
 }
