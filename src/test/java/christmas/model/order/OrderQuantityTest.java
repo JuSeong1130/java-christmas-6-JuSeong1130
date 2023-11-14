@@ -2,6 +2,7 @@ package christmas.model.order;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
 import org.assertj.core.api.Assertions;
@@ -15,7 +16,9 @@ class OrderQuantityTest {
     void OrderItem_생성_예외_테스트() {
         // given
         int quantity = 0;
-        Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
+        DrinkMenu drinkMenu = DrinkMenu.CHAMPAGNE;
+        Menu menu = new Menu(drinkMenu.getMenuType(), drinkMenu.getMenuName(),
+                drinkMenu.getPrice());
 
         // when then
         Assertions.assertThatThrownBy(() -> new OrderItem(menu, new OrderQuantity(quantity)))
@@ -27,7 +30,9 @@ class OrderQuantityTest {
     void OrderItem_생성_성공_테스트() {
         // given
         int quantity = 1;
-        Menu menu = new Menu(MenuType.DRINK, "테스트", 0);
+        DrinkMenu drinkMenu = DrinkMenu.CHAMPAGNE;
+        Menu menu = new Menu(drinkMenu.getMenuType(), drinkMenu.getMenuName(),
+                drinkMenu.getPrice());
 
         // when then
         Assertions.assertThatCode(() -> new OrderItem(menu, new OrderQuantity(quantity)))

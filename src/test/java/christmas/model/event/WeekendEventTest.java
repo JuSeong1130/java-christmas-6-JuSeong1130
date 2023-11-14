@@ -46,7 +46,7 @@ class WeekendEventTest {
                         DessertMenu.CHOCOLATE_CAKE.getPrice()), new OrderQuantity(5));
         OrderItem mainMenuItem = new OrderItem(
                 new Menu(MenuType.MAIN_COURSE, MainMenu.CHRISTMAS_PASTA.getMenuName(),
-                        MainMenu.CHRISTMAS_PASTA.getPrice()), new OrderQuantity(1));
+                        MainMenu.CHRISTMAS_PASTA.getPrice()), new OrderQuantity(mainMenuCount));
         OrderItem drinkMenuItem = new OrderItem(
                 new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
                         DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));

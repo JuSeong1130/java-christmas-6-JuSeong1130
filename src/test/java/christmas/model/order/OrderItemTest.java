@@ -1,6 +1,7 @@
 package christmas.model.order;
 
 import christmas.model.menu.DrinkMenu;
+import christmas.model.menu.MainMenu;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
 import org.assertj.core.api.Assertions;
@@ -13,9 +14,9 @@ class OrderItemTest {
     @DisplayName("입력된 메뉴가 드링크 메뉴라면 True")
     void 드링크_메뉴_True() {
         // given
-        String drinkName = "제로콜라";
-        int price = 3000;
-        Menu menu = new Menu(MenuType.DRINK, drinkName, price);
+        DrinkMenu drinkMenu = DrinkMenu.CHAMPAGNE;
+        Menu menu = new Menu(drinkMenu.getMenuType(), drinkMenu.getMenuName(),
+                drinkMenu.getPrice());
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
         // when
         boolean isDrinkMenu = orderItem.isDrinkMenu();
@@ -28,9 +29,9 @@ class OrderItemTest {
     @DisplayName("입력된 메뉴가 드링크 메뉴가 아니라면 False")
     void 드링크_메뉴_False() {
         // given
-        String drinkName = "드링크아님";
-        int price = 3000;
-        Menu menu = new Menu(MenuType.MAIN_COURSE, drinkName, price);
+        MainMenu mainMenu = MainMenu.CHRISTMAS_PASTA;
+        Menu menu = new Menu(mainMenu.getMenuType(), mainMenu.getMenuName(),
+                mainMenu.getPrice());
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
@@ -44,14 +45,13 @@ class OrderItemTest {
     @DisplayName("주문 항목의 메뉴타입과 일치한다면 True")
     void 주문항목_메뉴타입_일치_True() {
         // given
-        String drinkName = DrinkMenu.CHAMPAGNE.getMenuName();
-        int price = DrinkMenu.CHAMPAGNE.getPrice();
-        MenuType menuType = MenuType.DRINK;
-        Menu menu = new Menu(menuType, drinkName, price);
+        MainMenu mainMenu = MainMenu.CHRISTMAS_PASTA;
+        Menu menu = new Menu(mainMenu.getMenuType(), mainMenu.getMenuName(),
+                mainMenu.getPrice());
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
-        boolean isEqualMenuType = orderItem.isEqualMenuType(menuType);
+        boolean isEqualMenuType = orderItem.isEqualMenuType(MenuType.MAIN_COURSE);
 
         // then
         Assertions.assertThat(isEqualMenuType).isTrue();
@@ -61,14 +61,13 @@ class OrderItemTest {
     @DisplayName("주문 항목의 메뉴타입과 일치하지 않는다면 False")
     void 주문항목_메뉴타입_일치X_False() {
         // given
-        String drinkName = DrinkMenu.CHAMPAGNE.getMenuName();
-        int price = DrinkMenu.CHAMPAGNE.getPrice();
-        MenuType menuType = MenuType.DRINK;
-        Menu menu = new Menu(menuType, drinkName, price);
+        MainMenu mainMenu = MainMenu.CHRISTMAS_PASTA;
+        Menu menu = new Menu(mainMenu.getMenuType(), mainMenu.getMenuName(),
+                mainMenu.getPrice());
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(5));
 
         // when
-        boolean isEqualMenuType = orderItem.isEqualMenuType(MenuType.MAIN_COURSE);
+        boolean isEqualMenuType = orderItem.isEqualMenuType(MenuType.APPETIZER);
 
         // then
         Assertions.assertThat(isEqualMenuType).isFalse();
