@@ -29,7 +29,7 @@ public class OrderItem {
         return quantity;
     }
 
-    public int getAmount() {
+    public int calculateSubtotal() {
         return menu.getPrice() * quantity;
     }
 

@@ -54,9 +54,9 @@ public class Order {
 
     }
 
-    public int totalPurchaseAmount() {
+    public int calculateTotalOrderAmount() {
         return orderItems.stream()
-                .mapToInt(OrderItem::getAmount)
+                .mapToInt(OrderItem::calculateSubtotal)
                 .sum();
     }
 
@@ -66,7 +66,7 @@ public class Order {
     }
 
     public boolean isTotalAmountAboveThan(int amount) {
-        return totalPurchaseAmount() >= amount;
+        return calculateTotalOrderAmount() >= amount;
     }
 
     public long countMenuType(MenuType menuType) {

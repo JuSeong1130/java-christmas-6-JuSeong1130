@@ -13,7 +13,7 @@ public class GiftEvent implements Event{
         LocalDate endTime = LocalDate.of(2023, 12, 31);
 
         if(order.isTotalAmountAboveThan(120000) && order.isTimeInRange(startTime, endTime)) {
-            discountAmount = Gift.findGiftAmountBy(order.totalPurchaseAmount());
+            discountAmount = Gift.findGiftAmountBy(order.calculateTotalOrderAmount());
         }
         return new DiscountResult(GIFT_EVENT, discountAmount);
     }

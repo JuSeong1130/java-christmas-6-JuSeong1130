@@ -96,7 +96,7 @@ class OrderTest {
         Order order = new Order(orderItems, LocalDate.now());
 
         //when
-        int expected = order.totalPurchaseAmount();
+        int expected = order.calculateTotalOrderAmount();
 
         //then
         Assertions.assertThat(actual).isEqualTo(expected);

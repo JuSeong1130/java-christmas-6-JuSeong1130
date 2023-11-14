@@ -39,7 +39,7 @@ public class OutputView {
 
     public void printTotalAmountBeforeDiscount(Order order) {
         output.println("<할인 전 총주문 금액>");
-        output.printf("%,d원\n", order.totalPurchaseAmount());
+        output.printf("%,d원\n", order.calculateTotalOrderAmount());
     }
 
 
@@ -80,7 +80,7 @@ public class OutputView {
 
     private void printPaymentAmountAfterDiscount(List<DiscountResult> discountResults, Order order) {
         output.println("<할인 후 예상 결제 금액>");
-        int totalPurchaseAmount = order.totalPurchaseAmount();
+        int totalPurchaseAmount = order.calculateTotalOrderAmount();
         int discountAmount = 0;
         for (DiscountResult discountResult : discountResults) {
             discountAmount += (int) discountResult.getDiscountAmount();
@@ -121,7 +121,7 @@ public class OutputView {
 
     private void printGift(Order order) {
         output.println("<증정 메뉴>");
-        String name = Gift.findGiftNameBy(order.totalPurchaseAmount());
+        String name = Gift.findGiftNameBy(order.calculateTotalOrderAmount());
         output.println(name);
     }
 }
