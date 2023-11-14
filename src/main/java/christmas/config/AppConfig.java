@@ -12,6 +12,7 @@ import christmas.model.event.GiftEvent;
 import christmas.model.event.SpecialDayEvent;
 import christmas.model.event.WeekdayEvent;
 import christmas.model.event.WeekendEvent;
+import christmas.service.OrderService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.List;
@@ -46,14 +47,14 @@ public class AppConfig {
     }
 
     public static OrderController createOrderController() {
-        return new OrderController(createInputView(), createOutputView());
+        return new OrderController(createInputView(), createOutputView(), createOrderService());
     }
 
     private static InputView createInputView() {
         return new InputView(createInput(), createOutput());
     }
 
-    private static OutputView createOutputView() {
+    public static OutputView createOutputView() {
         return new OutputView(createOutput());
     }
 
@@ -63,6 +64,10 @@ public class AppConfig {
 
     private static Input createInput() {
         return new ConsoleInput();
+    }
+
+    private static OrderService createOrderService() {
+        return new OrderService();
     }
 
 }
