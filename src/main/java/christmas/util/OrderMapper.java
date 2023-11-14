@@ -2,11 +2,19 @@ package christmas.util;
 
 import christmas.controller.dto.RequestOrderItemDto;
 import christmas.exception.ConversionException;
+import christmas.model.event.Badge;
+import christmas.model.event.DiscountResult;
+import christmas.model.event.DiscountResults;
+import christmas.model.event.Gift;
 import christmas.model.menu.Menu;
 import christmas.model.menu.Menus;
+import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
 import christmas.model.order.OrderItems;
 import christmas.model.order.OrderQuantity;
+import christmas.service.DiscountResultDto;
+import christmas.service.OrderListDto;
+import christmas.service.OrderSummaryDto;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +63,36 @@ public class OrderMapper {
             orderItems.add(new OrderItem(menu, orderQuantity));
         }
         return new OrderItems(orderItems);
+    }
+
+    public static OrderSummaryDto toOrderSummaryDto(Order order, DiscountResults discountResults) {
+        int totalPurchaseAmount = order.calculateTotalOrderAmount();
+        int totalDiscountAmount = discountResults.calculateTotalDiscountAmount();
+        String gift = Gift.findGiftNameBy(totalPurchaseAmount);
+        String badge = Badge.findBadgeBy(totalDiscountAmount);
+        List<OrderListDto> orderListDtos = toOrderListDtos(order);
+        List<DiscountResultDto> discountResultDtos = toDiscountResultDtos(discountResults);
+        return new OrderSummaryDto(orderListDtos, discountResultDtos, totalPurchaseAmount,
+                totalDiscountAmount, gift, badge);
+    }
+
+    private static List<OrderListDto> toOrderListDtos(Order order) {
+        List<OrderListDto> orderListDtos = new ArrayList<>();
+        for (OrderItem orderItem : order.getOrderItems()) {
+            orderListDtos.add(new OrderListDto(orderItem.getMenuName(), orderItem.getQuantity()));
+        }
+        return orderListDtos;
+    }
+
+    private static List<DiscountResultDto> toDiscountResultDtos(DiscountResults discountResults) {
+        List<DiscountResultDto> discountResultDtos = new ArrayList<>();
+        for (DiscountResult discountResult : discountResults.getDiscountResults()) {
+            int discountAmount = discountResult.getDiscountAmount();
+            if(discountAmount != 0) {
+                discountResultDtos.add(new DiscountResultDto(discountResult.getEventName(),
+                        discountAmount));
+            }
+        }
+        return discountResultDtos;
     }
 }
