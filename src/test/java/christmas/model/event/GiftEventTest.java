@@ -17,19 +17,16 @@ import org.junit.jupiter.api.Test;
 class GiftEventTest {
 
     @Test
-    @DisplayName("120000 이상이면 샴페인을 증정 받는다")
+    @DisplayName("12월 1일에서 31일 사이, 120000 이상이면 샴페인을 증정 받는다")
     void 증정_이벤트() {
         // given
-        OrderItem orderItem = new OrderItem(
+        OrderItem mainMenuItem = new OrderItem(
                 new Menu(MenuType.MAIN_COURSE, MainMenu.BARBECUE_RIBS.getMenuName(),
                         MainMenu.BARBECUE_RIBS.getPrice()), new OrderQuantity(5));
-        OrderItem orderItem1 = new OrderItem(
-                new Menu(MenuType.MAIN_COURSE, MainMenu.CHRISTMAS_PASTA.getMenuName(),
-                        MainMenu.CHRISTMAS_PASTA.getPrice()), new OrderQuantity(1));
-        OrderItem orderItem2 = new OrderItem(
+        OrderItem drinkItem = new OrderItem(
                 new Menu(MenuType.DRINK, DrinkMenu.RED_WINE.getMenuName(),
                         DrinkMenu.RED_WINE.getPrice()), new OrderQuantity(3));
-        Order order = new Order(new OrderItems(List.of(orderItem, orderItem1, orderItem2)),
+        Order order = new Order(new OrderItems(List.of(mainMenuItem, drinkItem)),
                 LocalDate.of(2023, 12, 22));
         Event event = new GiftEvent();
 
