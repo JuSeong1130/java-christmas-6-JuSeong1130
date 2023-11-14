@@ -13,28 +13,37 @@ public enum Gift {
     private final String menuName;
     private final int price;
 
-    private final int amountInclusion;
+    private final int minimumPurchaseAmount;
 
-    Gift(String menuName, int price, int amountInclusion) {
+    Gift(String menuName, int price, int minimumPurchaseAmount) {
         this.menuName = menuName;
         this.price = price;
-        this.amountInclusion = amountInclusion;
+        this.minimumPurchaseAmount = minimumPurchaseAmount;
     }
 
     public static int findGiftAmountBy(int purchaseAmount) {
         return Arrays.stream(Gift.values())
-                .sorted(Comparator.comparing(Gift::getAmountInclusion).reversed())
-                .filter(gift -> gift.amountInclusion <= purchaseAmount)
+                .sorted(Comparator.comparing(Gift::getMinimumPurchaseAmount).reversed())
+                .filter(gift -> gift.minimumPurchaseAmount <= purchaseAmount)
                 .findAny()
-                .orElse(NO_GIFT).price;
+                .map(gift -> gift.price)
+                .orElse(NO_GIFT.price);
+    }
 
+    public static String findGiftNameBy(int purchaseAmount) {
+        return Arrays.stream(Gift.values())
+                .sorted(Comparator.comparing(Gift::getMinimumPurchaseAmount).reversed())
+                .filter(gift -> gift.minimumPurchaseAmount <= purchaseAmount)
+                .findAny()
+                .map(gift -> gift.menuName)
+                .orElse(NO_GIFT.menuName);
     }
 
     public int getPrice() {
         return price;
     }
 
-    public int getAmountInclusion() {
-        return amountInclusion;
+    public int getMinimumPurchaseAmount() {
+        return minimumPurchaseAmount;
     }
 }
