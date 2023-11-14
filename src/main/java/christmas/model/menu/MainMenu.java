@@ -11,6 +11,8 @@ public enum MainMenu {
     SEAFOOD_PASTA("해산물파스타", 35000),
     CHRISTMAS_PASTA("크리스마스파스타", 25000);
 
+    private static final MenuType menuType = MenuType.MAIN_COURSE;
+
     private final String menuName;
     private final int price;
 
@@ -31,5 +33,9 @@ public enum MainMenu {
 
     public int getPrice() {
         return price;
+    }
+
+    public MenuType getMenuType() {
+        return menuType;
     }
 }

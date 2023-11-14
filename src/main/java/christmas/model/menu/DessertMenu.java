@@ -9,6 +9,7 @@ public enum DessertMenu {
     CHOCOLATE_CAKE("초코케이크", 15000),
     ICECREAM("아이스크림", 5000)
     ;
+    private static final MenuType menuType = MenuType.DESSERT;
     private final String menuName;
     private final int price;
 
@@ -19,7 +20,7 @@ public enum DessertMenu {
 
     public static List<Menu> getDessertMenus() {
         return Arrays.stream(DessertMenu.values())
-                .map(dessertMenu -> new Menu(MenuType.DESSERT, dessertMenu.menuName,
+                .map(dessertMenu -> new Menu(menuType, dessertMenu.menuName,
                         dessertMenu.price))
                 .collect(Collectors.toList());
     }
@@ -30,5 +31,9 @@ public enum DessertMenu {
 
     public int getPrice() {
         return price;
+    }
+
+    public MenuType getMenuType() {
+        return menuType;
     }
 }

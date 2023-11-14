@@ -10,6 +10,7 @@ public enum AppetizerMenu {
     TAPAS("타파스", 5500),
     CAESAR_SALAD("시저샐러드", 8000);
 
+    private static final MenuType menuType = MenuType.APPETIZER;
     private final String menuName;
     private final int price;
 
@@ -20,11 +21,10 @@ public enum AppetizerMenu {
 
     public static List<Menu> getAppetizerMenus() {
         return Arrays.stream(AppetizerMenu.values())
-                .map(appetizerMenu -> new Menu(MenuType.APPETIZER, appetizerMenu.menuName,
+                .map(appetizerMenu -> new Menu(menuType, appetizerMenu.menuName,
                         appetizerMenu.price))
                 .collect(Collectors.toList());
     }
-
 
     public String getMenuName() {
         return menuName;
@@ -32,5 +32,9 @@ public enum AppetizerMenu {
 
     public int getPrice() {
         return price;
+    }
+
+    public MenuType getMenuType() {
+        return menuType;
     }
 }
