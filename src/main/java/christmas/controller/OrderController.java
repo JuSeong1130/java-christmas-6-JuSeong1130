@@ -40,6 +40,7 @@ public class OrderController {
         LocalDate selectedDate = ExceptionRetryHandler.retryUntilSuccess(inputView::askVisitDate);
         List<RequestOrderItemDto> requestOrderItemDtos = ExceptionRetryHandler.retryUntilSuccess(
                 inputView::askOrder);
-        return ExceptionRetryHandler.retryUntilSuccess(orderService::calculateExpectedOrder, selectedDate, requestOrderItemDtos);
+        return ExceptionRetryHandler.retryUntilSuccess(orderService::calculateExpectedOrder,
+                selectedDate, requestOrderItemDtos);
     }
 }

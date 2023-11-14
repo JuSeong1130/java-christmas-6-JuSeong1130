@@ -14,7 +14,8 @@ public class SpecialDayEvent implements Event {
         LocalDate startTime = LocalDate.of(2023, 12, 1);
         LocalDate endTime = LocalDate.of(2023, 12, 25);
         List<Integer> days = SpecialDay.getDays();
-        if(order.isDateIncludedIn(days) && order.isTotalAmountAboveThan(10000) && order.isTimeInRange(startTime, endTime)) {
+        if (order.isDateIncludedIn(days) && order.isTotalAmountAboveThan(10000)
+                && order.isTimeInRange(startTime, endTime)) {
             discountAmount = 1000;
         }
         return new DiscountResult(SPECIAL_EVENT, discountAmount);

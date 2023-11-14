@@ -7,6 +7,7 @@ public class RequestOrderItemDto {
 
     public RequestOrderItemDto() {
     }
+
     public RequestOrderItemDto(String menuName, int count) {
         this.menuName = menuName;
         this.count = count;

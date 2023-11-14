@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 public enum DessertMenu {
 
     CHOCOLATE_CAKE("초코케이크", 15000),
-    ICECREAM("아이스크림", 5000)
-    ;
+    ICECREAM("아이스크림", 5000);
     private static final MenuType menuType = MenuType.DESSERT;
     private final String menuName;
     private final int price;

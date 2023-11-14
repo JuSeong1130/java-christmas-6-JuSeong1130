@@ -33,7 +33,8 @@ class EventPlannerTest {
         DiscountResults expected = eventPlanner.calculateDiscountAmount(order);
 
         // then
-        Assertions.assertThat(actual.getDiscountResults()).containsExactlyInAnyOrderElementsOf(expected.getDiscountResults());
+        Assertions.assertThat(actual.getDiscountResults())
+                .containsExactlyInAnyOrderElementsOf(expected.getDiscountResults());
     }
 
     private static Order getOrder() {
@@ -62,7 +63,7 @@ class EventPlannerTest {
         return events;
     }
 
-    private  DiscountResults getDiscountResults() {
+    private DiscountResults getDiscountResults() {
         DiscountResult christmas = new DiscountResult("크리스마스 디데이 할인", 1200);
         DiscountResult gift = new DiscountResult("증정 이벤트", 25000);
         DiscountResult special = new DiscountResult("특별 할인", 1000);

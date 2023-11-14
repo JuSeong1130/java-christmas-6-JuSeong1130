@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 class GiftTest {
+
     @Test
     @DisplayName("금액이 일정 금액 이상일때 증정되는 상품의 금액을 리턴한다.")
     void 일정_금액_넘어_증정_있음() {

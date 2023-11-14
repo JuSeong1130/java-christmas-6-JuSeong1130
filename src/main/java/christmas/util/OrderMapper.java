@@ -88,7 +88,7 @@ public class OrderMapper {
         List<DiscountResultDto> discountResultDtos = new ArrayList<>();
         for (DiscountResult discountResult : discountResults.getDiscountResults()) {
             int discountAmount = discountResult.getDiscountAmount();
-            if(discountAmount != 0) {
+            if (discountAmount != 0) {
                 discountResultDtos.add(new DiscountResultDto(discountResult.getEventName(),
                         discountAmount));
             }

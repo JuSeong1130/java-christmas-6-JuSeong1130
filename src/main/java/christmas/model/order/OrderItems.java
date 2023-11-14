@@ -23,7 +23,7 @@ public class OrderItems {
         long totalQuantity = orderItems.stream()
                 .mapToInt(OrderItem::getQuantity)
                 .sum();
-        if(totalQuantity > 20) {
+        if (totalQuantity > 20) {
             throw new IllegalArgumentException("[ERROR] 주문 수량은 20개 초과하면 안됩니다");
         }
     }

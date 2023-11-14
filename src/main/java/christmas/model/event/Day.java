@@ -3,14 +3,13 @@ package christmas.model.event;
 import java.util.Arrays;
 
 public enum Day {
-    MONDAY("weekday","MONDAY"),
-    TUESDAY("weekday","TUESDAY"),
-    WEDNESDAY("weekday","WEDNESDAY"),
-    THURSDAY("weekday","THURSDAY"),
+    MONDAY("weekday", "MONDAY"),
+    TUESDAY("weekday", "TUESDAY"),
+    WEDNESDAY("weekday", "WEDNESDAY"),
+    THURSDAY("weekday", "THURSDAY"),
     FRIDAY("weekend", "FRIDAY"),
     SATURDAY("weekend", "SATURDAY"),
-    SUNDAY("weekday","SUNDAY")
-    ;
+    SUNDAY("weekday", "SUNDAY");
 
     private String dayType;
     private String dayOfTheWeek;

@@ -11,8 +11,7 @@ public enum SpecialDay {
     DAY_17(17),
     DAY_24(24),
     DAY_26(26),
-    DAY_31(31);
-    ;
+    DAY_31(31);;
 
     private final int dayOfMonth;
 

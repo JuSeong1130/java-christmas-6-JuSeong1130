@@ -23,7 +23,7 @@ public class InputView {
     public LocalDate askVisitDate() {
         try {
             output.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
-            return LocalDate.of(2023, 12 , Integer.parseInt(input.readLine()));
+            return LocalDate.of(2023, 12, Integer.parseInt(input.readLine()));
         } catch (DateTimeException | NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventPlanner {
+
     private List<Event> events;
 
     public EventPlanner(List<Event> events) {

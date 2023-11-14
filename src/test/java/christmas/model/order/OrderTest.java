@@ -30,6 +30,7 @@ class OrderTest {
         Assertions.assertThatCode(() -> new Order(new OrderItems(orderItems), LocalDate.now()))
                 .doesNotThrowAnyException();
     }
+
     @Test
     @DisplayName("Order 총 주문 금액을 확인")
     void Order_총_주문금액_테스트() {
@@ -38,7 +39,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -65,7 +66,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -73,7 +74,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 22));
 
         //when
         boolean expected = order.isWeekend();
@@ -81,6 +82,7 @@ class OrderTest {
         //then
         Assertions.assertThat(expected).isTrue();
     }
+
     @Test
     @DisplayName("Order의 주문일자가 주말이라면 False")
     void 주문일자_주말이_아닐_시_False() {
@@ -89,7 +91,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -97,7 +99,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         //when
         boolean expected = order.isWeekend();
@@ -105,6 +107,7 @@ class OrderTest {
         //then
         Assertions.assertThat(expected).isFalse();
     }
+
     @Test
     @DisplayName("Order의 총 주문 금액이 특정한 금액을 넘는다면 True")
     void 총_주문금액_일정금액_넘을_시_True() {
@@ -113,7 +116,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -121,7 +124,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         //when
         boolean expected = order.isTotalAmountAboveThan(10000);
@@ -138,7 +141,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -146,7 +149,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         //when
         boolean expected = order.isTotalAmountAboveThan(120000);
@@ -163,7 +166,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -171,7 +174,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         int actual = 1;
         //when
@@ -189,7 +192,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -197,7 +200,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
         LocalDate endDate = LocalDate.of(2023, 12, 31);
@@ -216,7 +219,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -224,7 +227,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
         LocalDate endDate = LocalDate.of(2023, 12, 20);
@@ -243,7 +246,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -251,7 +254,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 21));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 21));
 
         //when
         boolean expected = order.isWeekday();
@@ -259,6 +262,7 @@ class OrderTest {
         //then
         Assertions.assertThat(expected).isTrue();
     }
+
     @Test
     @DisplayName("Order의 주문일자가 평일 아니라면 False")
     void 주문일자_평일_아닐_시_False() {
@@ -267,7 +271,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -275,7 +279,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 22));
 
         //when
         boolean expected = order.isWeekday();
@@ -292,7 +296,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -300,7 +304,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 22));
 
         LocalDate startDate = LocalDate.of(2023, 12, 1);
 
@@ -321,7 +325,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -329,7 +333,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 22));
 
         List<Integer> days = List.of(3, 10, 22);
 
@@ -348,7 +352,7 @@ class OrderTest {
         int quantity = 1;
         Menu menu = new Menu(MenuType.DRINK, name, price);
 
-        String otherName= "티본스테이크";
+        String otherName = "티본스테이크";
         int otherPrice = 55000;
         int otherQuantity = 2;
         Menu otherMenu = new Menu(MenuType.MAIN_COURSE, otherName, otherPrice);
@@ -356,7 +360,7 @@ class OrderTest {
         OrderItem orderItem = new OrderItem(menu, new OrderQuantity(quantity));
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(otherQuantity));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
-        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12 , 22));
+        Order order = new Order(new OrderItems(orderItems), LocalDate.of(2023, 12, 22));
 
         List<Integer> days = List.of(3, 10);
 

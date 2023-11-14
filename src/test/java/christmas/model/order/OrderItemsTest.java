@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OrderItemsTest {
+
     @Test
     @DisplayName("중복된 OrderItem이 있다면 Order 생성 시 예외 발생")
     void 중복된_OrderItem_있다면_예외() {
@@ -52,7 +53,7 @@ class OrderItemsTest {
         OrderItem otherOrderItem = new OrderItem(otherMenu, new OrderQuantity(1));
         List<OrderItem> orderItems = List.of(orderItem, otherOrderItem);
         // when then
-        Assertions.assertThatThrownBy(() ->new OrderItems(orderItems))
+        Assertions.assertThatThrownBy(() -> new OrderItems(orderItems))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

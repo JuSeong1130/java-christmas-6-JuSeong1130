@@ -53,6 +53,7 @@ public class OutputView {
         output.println("<할인 전 총주문 금액>");
         output.printf("%,d원\n", toTalOrderAmount);
     }
+
     public void printBenefitsResult(OrderSummaryDto orderSummaryDto) {
         printGift(orderSummaryDto.getGift());
         printBenefits(orderSummaryDto.getDicountResultDtos());
@@ -60,6 +61,7 @@ public class OutputView {
         printPaymentAmountAfterDiscount(orderSummaryDto.getExpectedPurchaseAmountAfterDiscount());
         printBadge(orderSummaryDto.getBadge());
     }
+
     private void printGift(String name) {
         output.println("<증정 메뉴>");
         output.println(name + ENTER);
@@ -67,12 +69,13 @@ public class OutputView {
 
     private void printBenefits(List<DiscountResultDto> discountResultDtos) {
         output.println("<혜택 내역>");
-        if(discountResultDtos.size() == 0) {
+        if (discountResultDtos.size() == 0) {
             output.println("없음" + ENTER);
             return;
         }
         for (DiscountResultDto discountResultDto : discountResultDtos) {
-            output.printf("%s: -%,d원\n",discountResultDto.getEventName(), discountResultDto.getDiscountAmount());
+            output.printf("%s: -%,d원\n", discountResultDto.getEventName(),
+                    discountResultDto.getDiscountAmount());
         }
         output.println("");
     }
@@ -80,7 +83,7 @@ public class OutputView {
     private void printTotalDiscountAmount(int discountAmount) {
         output.println("<총혜택 금액>");
         String format = "-%,d원\n";
-        if(discountAmount == 0) {
+        if (discountAmount == 0) {
             format = "%,d원\n";
         }
         output.printf(format + ENTER, discountAmount);

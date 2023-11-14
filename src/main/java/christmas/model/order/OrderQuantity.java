@@ -10,7 +10,7 @@ public class OrderQuantity {
     }
 
     private void validate(int quantity) {
-        if(quantity < 1) {
+        if (quantity < 1) {
             throw new IllegalArgumentException("[ERROR] 수량은 1개 이상 이어야 합니다");
         }
     }
@@ -18,7 +18,6 @@ public class OrderQuantity {
     public int getQuantity() {
         return quantity;
     }
-
 
 
 }

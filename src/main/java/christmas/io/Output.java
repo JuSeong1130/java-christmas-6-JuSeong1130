@@ -6,7 +6,7 @@ public interface Output {
 
     void println(Object message);
 
-    void printf(String format,Object... args);
+    void printf(String format, Object... args);
 
 
 }

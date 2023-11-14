@@ -7,8 +7,7 @@ import java.util.Comparator;
 public enum Gift {
 
     CHAMPAGNE(DrinkMenu.CHAMPAGNE.getMenuName(), DrinkMenu.CHAMPAGNE.getPrice(), 120000),
-    NO_GIFT("없음", 0,0)
-    ;
+    NO_GIFT("없음", 0, 0);
 
     private final String menuName;
     private final int price;

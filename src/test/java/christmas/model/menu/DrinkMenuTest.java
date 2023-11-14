@@ -15,7 +15,7 @@ class DrinkMenuTest {
         // given
         List<Menu> drinkMenus = DrinkMenu.getDrinkMenus();
         // when, then
-        for(DrinkMenu dessertMenu : DrinkMenu.values()) {
+        for (DrinkMenu dessertMenu : DrinkMenu.values()) {
             boolean hasMenu = drinkMenus.stream()
                     .anyMatch(menu -> menu.isEqualName(dessertMenu.getMenuName())
                             && menu.isEqualPrice(dessertMenu.getPrice()));
@@ -26,7 +26,7 @@ class DrinkMenuTest {
     @Test
     @DisplayName("음료 가격이 모두 0원 이상인지 테스트")
     void 음료_가격_테스트() {
-        for(DrinkMenu drinkMenu : DrinkMenu.values()) {
+        for (DrinkMenu drinkMenu : DrinkMenu.values()) {
             boolean isGraterThanZero = drinkMenu.getPrice() > 0;
             Assertions.assertThat(isGraterThanZero).isTrue();
         }

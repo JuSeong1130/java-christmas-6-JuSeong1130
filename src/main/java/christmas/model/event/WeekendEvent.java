@@ -5,7 +5,7 @@ import christmas.model.order.Order;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class WeekendEvent implements Event{
+public class WeekendEvent implements Event {
 
     private static final String WEEKEND_EVENT = "주말 할인";
 
@@ -16,7 +16,8 @@ public class WeekendEvent implements Event{
         LocalDate startTime = LocalDate.of(2023, 12, 1);
         LocalDate endTime = LocalDate.of(2023, 12, 31);
 
-        if(order.isWeekend() && order.isTotalAmountAboveThan(10000) && order.isTimeInRange(startTime, endTime)) {
+        if (order.isWeekend() && order.isTotalAmountAboveThan(10000) && order.isTimeInRange(
+                startTime, endTime)) {
             discountAmount = order.countMenuType(MenuType.MAIN_COURSE) * 2023;
         }
         return new DiscountResult(WEEKEND_EVENT, discountAmount);

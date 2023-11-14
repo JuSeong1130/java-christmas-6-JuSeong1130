@@ -13,7 +13,8 @@ import java.util.List;
 
 public class OrderService {
 
-    public OrderSummaryDto calculateExpectedOrder(LocalDate selectedDate, List<RequestOrderItemDto> orderItemDtos) {
+    public OrderSummaryDto calculateExpectedOrder(LocalDate selectedDate,
+            List<RequestOrderItemDto> orderItemDtos) {
         OrderItems orderItems = OrderMapper.toOrderItems(orderItemDtos);
         Order order = new Order(orderItems, selectedDate);
 
