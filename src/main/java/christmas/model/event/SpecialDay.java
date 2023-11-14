@@ -1,6 +1,8 @@
 package christmas.model.event;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum SpecialDay {
 
@@ -18,9 +20,10 @@ public enum SpecialDay {
         this.dayOfMonth = dayOfMonth;
     }
 
-    public static boolean hasDayOfMonth(int dayOfMonth) {
+    public static List<Integer> getDays() {
         return Arrays.stream(SpecialDay.values())
-                .anyMatch(specialDay -> specialDay.dayOfMonth == dayOfMonth);
+                .map(SpecialDay::getDayOfMonth)
+                .collect(Collectors.toList());
     }
 
     public int getDayOfMonth() {
