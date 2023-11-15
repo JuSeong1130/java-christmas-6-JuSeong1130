@@ -1,6 +1,6 @@
 package christmas.model.order;
 
-import christmas.model.event.Day;
+import christmas.model.event.enums.Day;
 import christmas.model.menu.MenuType;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

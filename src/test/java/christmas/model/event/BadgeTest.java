@@ -1,7 +1,6 @@
 package christmas.model.event;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import christmas.model.event.enums.Badge;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

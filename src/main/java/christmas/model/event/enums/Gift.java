@@ -1,4 +1,4 @@
-package christmas.model.event;
+package christmas.model.event.enums;
 
 import christmas.model.menu.DrinkMenu;
 import java.util.Arrays;

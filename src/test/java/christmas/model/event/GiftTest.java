@@ -1,11 +1,9 @@
 package christmas.model.event;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import christmas.model.event.enums.Gift;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 class GiftTest {
 

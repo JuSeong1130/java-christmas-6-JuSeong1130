@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.model.event.enums.Gift;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;

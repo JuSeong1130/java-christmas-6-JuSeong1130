@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.model.event.enums.Gift;
 import christmas.model.order.Order;
 import java.time.LocalDate;
 

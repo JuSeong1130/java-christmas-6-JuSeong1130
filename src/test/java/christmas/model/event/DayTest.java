@@ -1,10 +1,8 @@
 package christmas.model.event;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import christmas.model.event.enums.Day;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

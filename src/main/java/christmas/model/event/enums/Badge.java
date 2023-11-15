@@ -1,4 +1,4 @@
-package christmas.model.event;
+package christmas.model.event.enums;
 
 import java.util.Arrays;
 import java.util.Comparator;
