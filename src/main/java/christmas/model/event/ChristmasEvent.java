@@ -22,7 +22,7 @@ public class ChristmasEvent implements Event {
     @Override
     public DiscountResult calculateDiscountAmount(Order order) {
         int discountAmount = 0;
-        if(isValidCondition(order)) {
+        if (isValidCondition(order)) {
             discountAmount = (order.calculateDaysSinceEventStart(startDate) * 100) + 1000;
         }
         return new DiscountResult(CHRISTMAS_EVENT, discountAmount);

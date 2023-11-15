@@ -19,11 +19,12 @@ public class GiftEvent implements Event {
     @Override
     public DiscountResult calculateDiscountAmount(Order order) {
         int discountAmount = 0;
-        if(isValidCondition(order)) {
+        if (isValidCondition(order)) {
             discountAmount = Gift.findGiftAmountBy(order.calculateTotalOrderAmount());
         }
         return new DiscountResult(GIFT_EVENT, discountAmount);
     }
+
     private boolean isValidCondition(Order order) {
         return eventConditions.stream()
                 .allMatch(eventCondition -> eventCondition.isValidCondition(order));

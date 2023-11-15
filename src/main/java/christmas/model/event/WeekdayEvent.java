@@ -26,6 +26,7 @@ public class WeekdayEvent implements Event {
         }
         return new DiscountResult(WEEKDAY_EVENT, discountAmount);
     }
+
     private boolean isValidCondition(Order order) {
         return eventConditions.stream()
                 .allMatch(eventCondition -> eventCondition.isValidCondition(order));

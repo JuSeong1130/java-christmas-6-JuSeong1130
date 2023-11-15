@@ -20,7 +20,7 @@ public class WeekendEvent implements Event {
     @Override
     public DiscountResult calculateDiscountAmount(Order order) {
         int discountAmount = 0;
-        if(isValidCondition(order)) {
+        if (isValidCondition(order)) {
             discountAmount = order.countMenuType(MenuType.MAIN_COURSE) * 2023;
         }
         return new DiscountResult(WEEKEND_EVENT, discountAmount);

@@ -3,7 +3,7 @@ package christmas.model.event.condition;
 import christmas.model.order.Order;
 import java.time.LocalDate;
 
-public class DateRangeCondition implements EventCondition{
+public class DateRangeCondition implements EventCondition {
 
     private final LocalDate startDate;
     private final LocalDate endDate;

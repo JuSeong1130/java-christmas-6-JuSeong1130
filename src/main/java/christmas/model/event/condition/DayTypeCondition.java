@@ -3,7 +3,7 @@ package christmas.model.event.condition;
 import christmas.model.event.enums.DayType;
 import christmas.model.order.Order;
 
-public class DayTypeCondition implements EventCondition{
+public class DayTypeCondition implements EventCondition {
 
     private final DayType dayType;
 

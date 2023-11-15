@@ -2,7 +2,7 @@ package christmas.model.event.condition;
 
 import christmas.model.order.Order;
 
-public class AmountAboveCondition implements EventCondition{
+public class AmountAboveCondition implements EventCondition {
 
     private final int minimumAmount;
 

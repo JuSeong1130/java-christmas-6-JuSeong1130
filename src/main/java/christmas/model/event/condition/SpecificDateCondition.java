@@ -3,7 +3,7 @@ package christmas.model.event.condition;
 import christmas.model.order.Order;
 import java.util.List;
 
-public class SpecificDateCondition implements EventCondition{
+public class SpecificDateCondition implements EventCondition {
 
     private final List<Integer> days;
 
