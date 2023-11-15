@@ -60,20 +60,21 @@ public class OutputView {
                 .collect(Collectors.joining(", "));
     }
 
-    public void printEndMessage() {
-        output.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + ENTER);
-    }
-
     public void printOrderSummary(ResponseOrderSummaryDto orderSummaryDto) {
+
         printOrderInfo(orderSummaryDto);
         printNewLine();
         printBenefitsResult(orderSummaryDto);
     }
 
+
     public void printOrderInfo(ResponseOrderSummaryDto orderSummaryDto) {
-        printEndMessage();
+        printGuideMessage();
         printOrderList(orderSummaryDto.getOrderListDtos());
         printTotalAmountBeforeDiscount(orderSummaryDto.getTotalPurchaseAmount());
+    }
+    private void printGuideMessage() {
+        output.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + ENTER);
     }
 
     public void printOrderList(List<ResponseOrderListDto> orderListDtos) {
