@@ -24,7 +24,7 @@ public class OrderItems {
                 .mapToInt(OrderItem::getQuantity)
                 .sum();
         if (totalQuantity > 20) {
-            throw new IllegalArgumentException("[ERROR] 주문 수량은 20개 초과하면 안됩니다");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -34,7 +34,7 @@ public class OrderItems {
                 .toList()
                 .size() != orderItems.size();
         if (hasDuplicationOrderItem) {
-            throw new IllegalArgumentException("[ERROR] 중복된 제품을 입력하면 안됩니다");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -42,7 +42,7 @@ public class OrderItems {
         boolean allDrinkMenu = orderItems.stream()
                 .allMatch(OrderItem::isDrinkMenu);
         if (allDrinkMenu) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문하시면 안됩니다");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
 
     }
