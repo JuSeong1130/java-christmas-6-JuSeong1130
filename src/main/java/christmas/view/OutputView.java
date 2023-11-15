@@ -101,7 +101,7 @@ public class OutputView {
 
     private void printGift(String name) {
         output.println("<증정 메뉴>");
-        output.println(name + "1개" + ENTER);
+        output.println(name + " 1개" + ENTER);
     }
 
     private void printBenefits(List<ResponseDiscountResultDto> discountResultDtos) {
