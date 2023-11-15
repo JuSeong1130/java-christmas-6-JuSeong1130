@@ -58,6 +58,12 @@
 - [x] Event를 생성한다.(이벤트 이름, 할인정책들) -> return Event
 - [x] 이벤트를 적용하여 할인한다(Order) -> return DiscountResult
 
+### EventCondition(Interface)
+구현체 : AmountAboveCondition, DateRangeCondition, DayTypeCondition, SpecificDateCondition
+
+- [x] EventCondtion 객체 생성 -> return EventCondtion
+- [x] 조건이 유효한지 확인하는 기능 -> return boolean;
+
 ### DiscountResults(class)
 - [x] 할인결과들을 생성한다.(List<DiscountResult>) -> return DiscountResults
 - [x] 총 할인 금액을 확인한다. -> return int
