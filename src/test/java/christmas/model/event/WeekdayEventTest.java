@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.config.AppConfig;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
@@ -29,7 +30,7 @@ class WeekdayEventTest {
         // given
         Order order = new Order(getOrderItems(),
                 LocalDate.of(2023, 12, 21));
-        Event event = new WeekdayEvent();
+        Event event = AppConfig.createWeekdayEvent();
 
         String eventName = "평일 할인";
         int discountAmount = dessertCount * discountAmountPerDessert;
