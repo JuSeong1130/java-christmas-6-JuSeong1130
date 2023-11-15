@@ -1,6 +1,7 @@
 package christmas.model.event;
 
 
+import christmas.config.AppConfig;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
@@ -27,7 +28,7 @@ class WeekendEventTest {
         // given
         Order order = new Order(getOrderItems(),
                 LocalDate.of(2023, 12, 22));
-        Event event = new WeekendEvent();
+        Event event = AppConfig.createWeekendEvent();
 
         String eventName = "주말 할인";
         int discountAmount = mainMenuCount * discountAmountPerMainMenu;
