@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.config.AppConfig;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
@@ -27,7 +28,7 @@ class SpecialDayEventTest {
         int specialDay = 3;
         Order order = new Order(new OrderItems(List.of(dessertItem)),
                 LocalDate.of(2023, 12, specialDay));
-        Event event = new SpecialDayEvent();
+        Event event = AppConfig.createSpecialDayEvent();
 
         String eventName = "특별 할인";
         int discountAmount = 1000;
