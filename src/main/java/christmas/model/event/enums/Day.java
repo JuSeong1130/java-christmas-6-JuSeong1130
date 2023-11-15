@@ -1,31 +1,28 @@
 package christmas.model.event.enums;
 
+import java.time.DayOfWeek;
 import java.util.Arrays;
 
 public enum Day {
-    MONDAY("weekday", "MONDAY"),
-    TUESDAY("weekday", "TUESDAY"),
-    WEDNESDAY("weekday", "WEDNESDAY"),
-    THURSDAY("weekday", "THURSDAY"),
-    FRIDAY("weekend", "FRIDAY"),
-    SATURDAY("weekend", "SATURDAY"),
-    SUNDAY("weekday", "SUNDAY");
+    MONDAY(DayType.WEEKDAY, "MONDAY"),
+    TUESDAY(DayType.WEEKDAY, "TUESDAY"),
+    WEDNESDAY(DayType.WEEKDAY, "WEDNESDAY"),
+    THURSDAY(DayType.WEEKDAY, "THURSDAY"),
+    FRIDAY(DayType.WEEKEND, "FRIDAY"),
+    SATURDAY(DayType.WEEKEND, "SATURDAY"),
+    SUNDAY(DayType.WEEKDAY, "SUNDAY");
 
-    private String dayType;
+    private DayType dayType;
     private String dayOfTheWeek;
 
-    Day(String dayType, String dayOfTheWeek) {
+    Day(DayType dayType, String dayOfTheWeek) {
         this.dayType = dayType;
         this.dayOfTheWeek = dayOfTheWeek;
     }
 
-    public static boolean isWeekday(String dayOfTheWeek) {
+    public static boolean isEqualDayType(String dayOfTheWeek, DayType dayType) {
         return Arrays.stream(Day.values())
                 .filter(day -> day.dayOfTheWeek.equals(dayOfTheWeek))
-                .anyMatch(day -> day.dayType.equals("weekday"));
-    }
-
-    public static boolean isWeekend(String dayOfTheWeek) {
-        return !isWeekday(dayOfTheWeek);
+                .anyMatch(day -> day.dayType == dayType);
     }
 }

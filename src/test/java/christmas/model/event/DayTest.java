@@ -1,6 +1,7 @@
 package christmas.model.event;
 
 import christmas.model.event.enums.Day;
+import christmas.model.event.enums.DayType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,10 +15,10 @@ class DayTest {
     @ValueSource(strings = {"SUNDAY", "TUESDAY", "THURSDAY"})
     void 일요일에서_목요일은_평일_TRUE(String dayOfTheWeek) {
         // when
-        boolean weekday = Day.isWeekday(dayOfTheWeek);
+        boolean expected = Day.isEqualDayType(dayOfTheWeek, DayType.WEEKDAY);
 
         // then
-        Assertions.assertThat(weekday).isTrue();
+        Assertions.assertThat(expected).isTrue();
     }
 
     @ParameterizedTest(name = "{0}는 평일 FALSE")
@@ -25,10 +26,10 @@ class DayTest {
     @ValueSource(strings = {"FRIDAY", "SATURDAY"})
     void 금요일에서_토요일은_평일_FALSE(String dayOfTheWeek) {
         // when
-        boolean weekday = Day.isWeekday(dayOfTheWeek);
+        boolean expected = Day.isEqualDayType(dayOfTheWeek, DayType.WEEKDAY);
 
         // then
-        Assertions.assertThat(weekday).isFalse();
+        Assertions.assertThat(expected).isFalse();
     }
 
     @ParameterizedTest(name = "{0}는 주말 TRUE")
@@ -36,10 +37,10 @@ class DayTest {
     @ValueSource(strings = {"FRIDAY", "SATURDAY"})
     void 금요일에서_토요일은_주말(String dayOfTheWeek) {
         // when
-        boolean weekday = Day.isWeekend(dayOfTheWeek);
+        boolean expected = Day.isEqualDayType(dayOfTheWeek, DayType.WEEKEND);
 
         // then
-        Assertions.assertThat(weekday).isTrue();
+        Assertions.assertThat(expected).isTrue();
     }
 
     @ParameterizedTest(name = "{0}는 주말 FALSE")
@@ -47,10 +48,10 @@ class DayTest {
     @ValueSource(strings = {"SUNDAY", "TUESDAY", "THURSDAY"})
     void 일요일에서_목요일은_주말_FALSE(String dayOfTheWeek) {
         // when
-        boolean weekday = Day.isWeekend(dayOfTheWeek);
+        boolean expected = Day.isEqualDayType(dayOfTheWeek, DayType.WEEKEND);
 
         // then
-        Assertions.assertThat(weekday).isFalse();
+        Assertions.assertThat(expected).isFalse();
     }
 
 
