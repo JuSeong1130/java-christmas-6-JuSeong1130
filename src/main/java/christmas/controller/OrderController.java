@@ -1,17 +1,9 @@
 package christmas.controller;
 
-import christmas.config.AppConfig;
 import christmas.controller.dto.RequestOrderItemDto;
-import christmas.exception.InvalidFormatException;
-import christmas.model.event.DiscountResult;
-import christmas.model.event.EventPlanner;
-import christmas.model.order.Order;
-import christmas.model.order.OrderItem;
-import christmas.model.order.OrderItems;
 import christmas.service.OrderService;
-import christmas.service.OrderSummaryDto;
+import christmas.service.dto.ResponseOrderSummaryDto;
 import christmas.util.ExceptionRetryHandler;
-import christmas.util.OrderMapper;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.time.LocalDate;
@@ -30,14 +22,15 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    public void beginExpectedOrderProcessing() {
-        outputView.printWelcome();
-        OrderSummaryDto orderSummaryDto = calculateExpectedOrder();
+    public void begin() {
+        outputView.printStartMessage();
+        ResponseOrderSummaryDto orderSummaryDto = calculateExpectedOrder();
         outputView.printOrderSummary(orderSummaryDto);
     }
 
-    private OrderSummaryDto calculateExpectedOrder() {
+    private ResponseOrderSummaryDto calculateExpectedOrder() {
         LocalDate selectedDate = ExceptionRetryHandler.retryUntilSuccess(inputView::askVisitDate);
+        outputView.printMenu(orderService.findMenus());
         List<RequestOrderItemDto> requestOrderItemDtos = ExceptionRetryHandler.retryUntilSuccess(
                 inputView::askOrder);
         return ExceptionRetryHandler.retryUntilSuccess(orderService::calculateExpectedOrder,

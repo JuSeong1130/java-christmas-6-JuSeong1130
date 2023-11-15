@@ -28,4 +28,8 @@ public class Menus {
                 .orElseThrow(
                         () -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
 }

@@ -51,4 +51,6 @@ public class Menu {
     public String getName() {
         return name;
     }
+
+    public String getMenuType() { return menuType.getTypeName();}
 }
