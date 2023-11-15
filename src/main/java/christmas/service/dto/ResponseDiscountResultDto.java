@@ -1,11 +1,11 @@
-package christmas.service;
+package christmas.service.dto;
 
-public class DiscountResultDto {
+public class ResponseDiscountResultDto {
 
     private final String eventName;
     private final int discountAmount;
 
-    public DiscountResultDto(String eventName, int discountAmount) {
+    public ResponseDiscountResultDto(String eventName, int discountAmount) {
         this.eventName = eventName;
         this.discountAmount = discountAmount;
     }

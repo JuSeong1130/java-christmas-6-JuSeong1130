@@ -1,12 +1,14 @@
-package christmas.service;
+package christmas.service.dto;
 
+import christmas.service.dto.ResponseDiscountResultDto;
+import christmas.service.dto.ResponseOrderListDto;
 import java.util.List;
 
-public class OrderSummaryDto {
+public class ResponseOrderSummaryDto {
 
-    private final List<OrderListDto> orderListDtos;
+    private final List<ResponseOrderListDto> orderListDtos;
 
-    private final List<DiscountResultDto> dicountResultDtos;
+    private final List<ResponseDiscountResultDto> dicountResultDtos;
 
     private final int totalPurchaseAmount;
     private final int totalDiscountAmount;
@@ -16,8 +18,8 @@ public class OrderSummaryDto {
     private final String badge;
 
 
-    public OrderSummaryDto(List<OrderListDto> orderListDtos,
-            List<DiscountResultDto> dicountResultDtos,
+    public ResponseOrderSummaryDto(List<ResponseOrderListDto> orderListDtos,
+            List<ResponseDiscountResultDto> dicountResultDtos,
             int totalPurchaseAmount, int totalDiscountAmount, String gift, String badge) {
         this.orderListDtos = orderListDtos;
         this.dicountResultDtos = dicountResultDtos;
@@ -27,11 +29,11 @@ public class OrderSummaryDto {
         this.badge = badge;
     }
 
-    public List<OrderListDto> getOrderListDtos() {
+    public List<ResponseOrderListDto> getOrderListDtos() {
         return orderListDtos;
     }
 
-    public List<DiscountResultDto> getDicountResultDtos() {
+    public List<ResponseDiscountResultDto> getDicountResultDtos() {
         return dicountResultDtos;
     }
 
