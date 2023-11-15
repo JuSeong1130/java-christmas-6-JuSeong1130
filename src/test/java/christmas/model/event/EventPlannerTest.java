@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.config.AppConfig;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
@@ -49,10 +50,10 @@ class EventPlannerTest {
     }
 
     private static List<Event> getEvents() {
-        List<Event> events = List.of(new ChristmasEvent(), new SpecialDayEvent(),
-                new WeekdayEvent(),
-                new WeekendEvent(), new GiftEvent());
-        return events;
+        return List.of(AppConfig.createChristmasEvent(),
+                AppConfig.createSpecialDayEvent(),
+                AppConfig.createWeekdayEvent(),
+                AppConfig.createWeekendEvent(), AppConfig.createGiftEvent());
     }
 
     private DiscountResults getDiscountResults() {

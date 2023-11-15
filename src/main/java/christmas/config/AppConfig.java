@@ -12,9 +12,17 @@ import christmas.model.event.GiftEvent;
 import christmas.model.event.SpecialDayEvent;
 import christmas.model.event.WeekdayEvent;
 import christmas.model.event.WeekendEvent;
+import christmas.model.event.condition.AmountAboveCondition;
+import christmas.model.event.condition.DateRangeCondition;
+import christmas.model.event.condition.DayTypeCondition;
+import christmas.model.event.condition.EventCondition;
+import christmas.model.event.condition.SpecificDateCondition;
+import christmas.model.event.enums.DayType;
+import christmas.model.event.enums.SpecialDay;
 import christmas.service.OrderService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AppConfig {
@@ -26,24 +34,75 @@ public class AppConfig {
         return new EventPlanner(events);
     }
 
-    private static Event createChristmasEvent() {
-        return new ChristmasEvent();
+    public static Event createChristmasEvent() {
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 25);
+        int minimumAmount = 10000;
+
+        List<EventCondition> eventConditions = List.of(
+                createAmountAboveCondition(minimumAmount),
+                createDateRangeCondition(startDate, endDate));
+
+        return new ChristmasEvent(startDate, eventConditions);
     }
 
-    private static Event createGiftEvent() {
-        return new GiftEvent();
+    public static Event createGiftEvent() {
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 31);
+        int minimumAmount = 120000;
+        List<EventCondition> eventConditions = List.of(
+                createAmountAboveCondition(minimumAmount),
+                createDateRangeCondition(startDate, endDate));
+        return new GiftEvent(eventConditions);
     }
 
-    private static Event createWeekdayEvent() {
-        return new WeekdayEvent();
+    public static Event createWeekdayEvent() {
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 31);
+        int minimumAmount = 10000;
+        DayType dayType = DayType.WEEKDAY;
+        List<EventCondition> eventConditions = List.of(
+                createAmountAboveCondition(minimumAmount),
+                createDateRangeCondition(startDate, endDate),
+                createDayTypeCondition(dayType));
+        return new WeekdayEvent(eventConditions);
     }
 
-    private static Event createWeekendEvent() {
-        return new WeekendEvent();
+    public static Event createWeekendEvent() {
+        LocalDate startDate = LocalDate.of(2023, 12, 1);
+        LocalDate endDate = LocalDate.of(2023, 12, 31);
+        int minimumAmount = 10000;
+        DayType dayType = DayType.WEEKEND;
+        List<EventCondition> eventConditions = List.of(
+                createAmountAboveCondition(minimumAmount),
+                createDateRangeCondition(startDate, endDate),
+                createDayTypeCondition(dayType));
+        return new WeekendEvent(eventConditions);
     }
 
-    private static Event createSpecialDayEvent() {
-        return new SpecialDayEvent();
+    public static Event createSpecialDayEvent() {
+        List<Integer> days = SpecialDay.getDays();
+        int minimumAmount = 10000;
+        List<EventCondition> eventConditions = List.of(
+                createAmountAboveCondition(minimumAmount),
+                createSpecificDateCondition(days));
+        return new SpecialDayEvent(eventConditions);
+    }
+
+    public static EventCondition createDayTypeCondition(DayType dayType) {
+        return new DayTypeCondition(dayType);
+    }
+
+    public static EventCondition createDateRangeCondition(LocalDate startDate, LocalDate endDate) {
+        return new DateRangeCondition(startDate, endDate);
+    }
+
+    private static EventCondition createSpecificDateCondition(List<Integer> days) {
+        return new SpecificDateCondition(days);
+    }
+
+    private static EventCondition createAmountAboveCondition(int amount) {
+        return new AmountAboveCondition(amount);
     }
 
     public static OrderController createOrderController() {
