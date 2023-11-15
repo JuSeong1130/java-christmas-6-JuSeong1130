@@ -107,7 +107,8 @@ public class OrderMapper {
     public static ResponseMenuListDto toResponseMenuListDto(List<Menu> menus) {
         Map<String, List<ResponseMenuDto>> menuLists = menus.stream()
                 .collect(Collectors.groupingBy(Menu::getMenuType,
-                        Collectors.mapping(menu -> new ResponseMenuDto(menu.getName(), menu.getPrice()),
+                        Collectors.mapping(
+                                menu -> new ResponseMenuDto(menu.getName(), menu.getPrice()),
                                 Collectors.toList())));
         return new ResponseMenuListDto(menuLists);
     }
