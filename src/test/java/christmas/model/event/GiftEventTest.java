@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.config.AppConfig;
 import christmas.model.event.enums.Gift;
 import christmas.model.menu.DessertMenu;
 import christmas.model.menu.DrinkMenu;
@@ -24,7 +25,7 @@ class GiftEventTest {
         // given
         Order order = new Order(getOrderItems(),
                 LocalDate.of(2023, 12, 22));
-        Event event = new GiftEvent();
+        Event event = AppConfig.createGiftEvent();
 
         String eventName = "증정 이벤트";
         int discountAmount = Gift.CHAMPAGNE.getPrice();
