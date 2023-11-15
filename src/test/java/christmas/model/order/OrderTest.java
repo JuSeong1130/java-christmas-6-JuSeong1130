@@ -1,20 +1,16 @@
 package christmas.model.order;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import christmas.model.event.enums.DayType;
 import christmas.model.menu.DrinkMenu;
 import christmas.model.menu.MainMenu;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 class OrderTest {
 
@@ -65,7 +61,7 @@ class OrderTest {
         Order order = new Order(orderItems, LocalDate.of(2023, 12, weekday));
 
         //when
-        boolean expected = order.isWeekend();
+        boolean expected = order.isEqualDayType(DayType.WEEKEND);
 
         //then
         Assertions.assertThat(expected).isTrue();
@@ -79,7 +75,7 @@ class OrderTest {
         Order order = new Order(orderItems, LocalDate.of(2023, 12, weekend));
 
         //when
-        boolean expected = order.isWeekend();
+        boolean expected = order.isEqualDayType(DayType.WEEKEND);
 
         //then
         Assertions.assertThat(expected).isFalse();
@@ -93,7 +89,7 @@ class OrderTest {
         Order order = new Order(orderItems, LocalDate.of(2023, 12, weekday));
 
         //when
-        boolean expected = order.isWeekday();
+        boolean expected = order.isEqualDayType(DayType.WEEKDAY);
 
         //then
         Assertions.assertThat(expected).isTrue();
@@ -107,7 +103,7 @@ class OrderTest {
         Order order = new Order(orderItems, LocalDate.of(2023, 12, weekend));
 
         //when
-        boolean expected = order.isWeekday();
+        boolean expected = order.isEqualDayType(DayType.WEEKDAY);
 
         //then
         Assertions.assertThat(expected).isFalse();

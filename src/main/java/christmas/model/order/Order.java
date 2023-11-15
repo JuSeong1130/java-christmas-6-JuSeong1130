@@ -1,6 +1,7 @@
 package christmas.model.order;
 
 import christmas.model.event.enums.Day;
+import christmas.model.event.enums.DayType;
 import christmas.model.menu.MenuType;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -21,10 +22,6 @@ public class Order {
         return orderItems.calculateTotalOrderAmount();
     }
 
-    public boolean isWeekend() {
-        return Day.isWeekend(String.valueOf(orderTime.getDayOfWeek()));
-    }
-
     public boolean isTotalAmountAboveThan(int amount) {
         return calculateTotalOrderAmount() >= amount;
     }
@@ -35,10 +32,6 @@ public class Order {
 
     public boolean isTimeInRange(LocalDate startTime, LocalDate endTime) {
         return !orderTime.isBefore(startTime) && !orderTime.isAfter(endTime);
-    }
-
-    public boolean isWeekday() {
-        return Day.isWeekday(String.valueOf(orderTime.getDayOfWeek()));
     }
 
     public int calculateDaysSinceEventStart(LocalDate startTime) {
@@ -53,5 +46,9 @@ public class Order {
 
     public List<OrderItem> getOrderItems() {
         return orderItems.getOrderItems();
+    }
+
+    public boolean isEqualDayType(DayType dayType) {
+        return Day.isEqualDayType(String.valueOf(orderTime.getDayOfWeek()), dayType);
     }
 }
