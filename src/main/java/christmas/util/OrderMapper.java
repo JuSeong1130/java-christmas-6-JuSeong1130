@@ -12,12 +12,17 @@ import christmas.model.order.Order;
 import christmas.model.order.OrderItem;
 import christmas.model.order.OrderItems;
 import christmas.model.order.OrderQuantity;
-import christmas.service.DiscountResultDto;
-import christmas.service.OrderListDto;
-import christmas.service.OrderSummaryDto;
+import christmas.service.dto.ResponseDiscountResultDto;
+import christmas.service.dto.ResponseMenuDto;
+import christmas.service.dto.ResponseMenuListDto;
+import christmas.service.dto.ResponseOrderListDto;
+import christmas.service.dto.ResponseOrderSummaryDto;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OrderMapper {
 
@@ -65,34 +70,45 @@ public class OrderMapper {
         return new OrderItems(orderItems);
     }
 
-    public static OrderSummaryDto toOrderSummaryDto(Order order, DiscountResults discountResults) {
+    public static ResponseOrderSummaryDto toOrderSummaryDto(Order order,
+            DiscountResults discountResults) {
         int totalPurchaseAmount = order.calculateTotalOrderAmount();
         int totalDiscountAmount = discountResults.calculateTotalDiscountAmount();
         String gift = Gift.findGiftNameBy(totalPurchaseAmount);
         String badge = Badge.findBadgeBy(totalDiscountAmount);
-        List<OrderListDto> orderListDtos = toOrderListDtos(order);
-        List<DiscountResultDto> discountResultDtos = toDiscountResultDtos(discountResults);
-        return new OrderSummaryDto(orderListDtos, discountResultDtos, totalPurchaseAmount,
+        List<ResponseOrderListDto> orderListDtos = toOrderListDtos(order);
+        List<ResponseDiscountResultDto> discountResultDtos = toDiscountResultDtos(discountResults);
+        return new ResponseOrderSummaryDto(orderListDtos, discountResultDtos, totalPurchaseAmount,
                 totalDiscountAmount, gift, badge);
     }
 
-    private static List<OrderListDto> toOrderListDtos(Order order) {
-        List<OrderListDto> orderListDtos = new ArrayList<>();
+    private static List<ResponseOrderListDto> toOrderListDtos(Order order) {
+        List<ResponseOrderListDto> orderListDtos = new ArrayList<>();
         for (OrderItem orderItem : order.getOrderItems()) {
-            orderListDtos.add(new OrderListDto(orderItem.getMenuName(), orderItem.getQuantity()));
+            orderListDtos.add(
+                    new ResponseOrderListDto(orderItem.getMenuName(), orderItem.getQuantity()));
         }
         return orderListDtos;
     }
 
-    private static List<DiscountResultDto> toDiscountResultDtos(DiscountResults discountResults) {
-        List<DiscountResultDto> discountResultDtos = new ArrayList<>();
+    private static List<ResponseDiscountResultDto> toDiscountResultDtos(
+            DiscountResults discountResults) {
+        List<ResponseDiscountResultDto> discountResultDtos = new ArrayList<>();
         for (DiscountResult discountResult : discountResults.getDiscountResults()) {
             int discountAmount = discountResult.getDiscountAmount();
             if (discountAmount != 0) {
-                discountResultDtos.add(new DiscountResultDto(discountResult.getEventName(),
+                discountResultDtos.add(new ResponseDiscountResultDto(discountResult.getEventName(),
                         discountAmount));
             }
         }
         return discountResultDtos;
+    }
+
+    public static ResponseMenuListDto toResponseMenuListDto(List<Menu> menus) {
+        Map<String, List<ResponseMenuDto>> menuLists = menus.stream()
+                .collect(Collectors.groupingBy(Menu::getMenuType,
+                        Collectors.mapping(menu -> new ResponseMenuDto(menu.getName(), menu.getPrice()),
+                                Collectors.toList())));
+        return new ResponseMenuListDto(menuLists);
     }
 }
