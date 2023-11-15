@@ -15,7 +15,7 @@ public class ExceptionRetryHandler {
         while (true) {
             try {
                 return supplier.get();
-            } catch (IllegalArgumentException | InvalidFormatException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage() + System.lineSeparator());
             }
         }
@@ -26,7 +26,7 @@ public class ExceptionRetryHandler {
         while (true) {
             try {
                 return function.apply(arguments, otherArguments);
-            } catch (IllegalArgumentException | InvalidFormatException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage() + System.lineSeparator());
             }
         }

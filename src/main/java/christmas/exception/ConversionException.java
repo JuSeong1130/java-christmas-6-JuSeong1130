@@ -1,6 +1,6 @@
 package christmas.exception;
 
-public class ConversionException extends RuntimeException {
+public class ConversionException extends IllegalArgumentException {
 
     public ConversionException(String message) {
         super(message);
