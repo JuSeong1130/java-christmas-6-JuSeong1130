@@ -20,11 +20,9 @@ public class OutputView {
         this.output = output;
     }
 
-
     private void printNewLine() {
         output.println("");
     }
-
 
     public void printStartMessage() {
         printWelcome();
@@ -139,6 +137,4 @@ public class OutputView {
     public void printErrorMessage(String message) {
         output.println(message);
     }
-
-
 }
